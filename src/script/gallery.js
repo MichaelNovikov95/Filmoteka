@@ -1,5 +1,6 @@
 import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import { MovieApi } from './fetchFilms';
+import { makeMarkup } from './cardMarkup';
 // import { renderCards } from './renderCards';
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
@@ -10,7 +11,7 @@ const renderPopularFilms = async () => {
   try {
     const { data } = await movieApi.fetchPopularFilms();
 
-    galleryEl.innerHTML = renderCards(data.results);
+    galleryEl.innerHTML = makeMarkup(data.results);
   } catch (err) {
     console.log(err);
   }
