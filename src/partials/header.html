@@ -1,1 +1,43 @@
-<input type="text" name="searchQuery" autocomplete="off" />
+<header class="page-header">
+  <div class="page-header__menu-comtainer">
+    <a class="logo" href="/src/index.html">
+      <svg width="24px" height="24px">
+        <use class="logo__icon-filmoteka" href="#"></use>
+      </svg>
+      <span class="logo__link">Filmoteka </span>
+    </a>
+    <nav class="nav-menu">
+      <ul class="nav-menu__list">
+        <li class="nav-menu__item">
+          <a class="nav-menu__link" href="/src/index.html"></a>
+        </li>
+        <li class="nav-menu__item"><a class="nav-menu__link" href="#"></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="page-header__search">
+    <form class="search-form">
+      <input
+        class="search-form__input js-search"
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Movie search"
+        requaired
+      />
+      <button>
+        <svg width="12px" height="12px">
+          <use class="icon-search" href="#"></use>
+        </svg>
+      </button>
+    </form>
+    <p class="page-header__text visually-hidden">
+      Search result not successful. Enter the correct movie name and try again.
+    </p>
+  </div>
+
+  <div class="page-header__buttons visually-hidden">
+    <button class="button watched active">Watched</button>
+    <button class="button queued">Queue</button>
+  </div>
+</header>
