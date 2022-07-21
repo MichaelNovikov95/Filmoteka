@@ -1,0 +1,1 @@
+{"mappings":"AAAmBA,SAASC,cAAc,iBAI/BC,iBAAiB,SAF5B","sources":["src/script/modal_developer.js"],"sourcesContent":["const footerSpan = document.querySelector('.footer__link');\n\nfunction openModalHandle() {}\n\nfooterSpan.addEventListener('click', openModalHandle);\n"],"names":["document","querySelector","addEventListener"],"version":3,"file":"index.9c6677ef.js.map"}
