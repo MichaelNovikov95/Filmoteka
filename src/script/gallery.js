@@ -1,6 +1,7 @@
 import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import { MovieApi } from './fetchFilms';
-// import { renderCards } from './renderCards';
+import { makeMarkup } from './cardMarkup';
+import { debounce } from 'debounce';
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
@@ -10,7 +11,7 @@ const renderPopularFilms = async () => {
   try {
     const { data } = await movieApi.fetchPopularFilms();
 
-    galleryEl.innerHTML = renderCards(data.results);
+    galleryEl.innerHTML = makeMarkup(data.results);
   } catch (err) {
     console.log(err);
   }
@@ -19,6 +20,7 @@ renderPopularFilms();
 
 const onSearchInput = async e => {
   e.preventDefault();
+  console.log(e.target);
   movieApi.query = e.target.value.trim().toLowerCase();
   movieApi.page = 1;
   try {
@@ -31,13 +33,15 @@ const onSearchInput = async e => {
       alertNoFilmsFound();
       return;
     } else {
-      galleryEl.innerHTML = renderCards(data.results);
+      galleryEl.innerHTML = makeMarkup(data.results);
     }
   } catch (err) {
     galleryEl.innerHTML = '';
-    console.log(err);
+    console.log(err.message);
   }
 };
 
-// searchInputEl.addEventListener('input', debounce(onSearchInput, DEBOUNCE_DELAY));
-searchInputEl.addEventListener('input', onSearchInput);
+searchInputEl.addEventListener(
+  'input',
+  debounce(onSearchInput, DEBOUNCE_DELAY)
+);
