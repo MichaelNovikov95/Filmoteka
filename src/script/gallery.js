@@ -1,7 +1,7 @@
 import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
-// import { renderCards } from './renderCards';
+import { debounce } from 'debounce';
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
@@ -20,6 +20,7 @@ renderPopularFilms();
 
 const onSearchInput = async e => {
   e.preventDefault();
+  console.log(e.target);
   movieApi.query = e.target.value.trim().toLowerCase();
   movieApi.page = 1;
   try {
@@ -35,9 +36,11 @@ const onSearchInput = async e => {
     }
   } catch (err) {
     galleryEl.innerHTML = '';
-    console.log(err);
+    console.log(err.message);
   }
 };
 
-// searchInputEl.addEventListener('input', debounce(onSearchInput, DEBOUNCE_DELAY));
-searchInputEl.addEventListener('input', onSearchInput);
+searchInputEl.addEventListener(
+  'input',
+  debounce(onSearchInput, DEBOUNCE_DELAY)
+);

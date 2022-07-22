@@ -35,10 +35,9 @@ export class MovieApi {
     });
   }
   fetchMovieById() {
-    return axios.get(`${this.#ID_URL}`, {
+    return axios.get(`${this.#ID_URL}${this.id}`, {
       params: {
         api_key: this.#API_KEY,
-        id: this.id,
         page: this.page,
         language: 'en-US',
       },

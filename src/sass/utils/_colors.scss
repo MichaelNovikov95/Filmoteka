@@ -1,15 +1,11 @@
-$colors: (
-  'background-color': #e5e5e5,
-  'header-text-color': #fff,
-  'secondary-text-color': #545454,
-  'button-active/hover-color': #ff6b01,
-  'description-accent-color': #ff6b08,
-  'main-title-color': #000000,
-  'button-paggination-color': #f7f7f7,
-  'underline-title-color/notiflix-failure-color': #ff001b,
-  'modal-key-description-color': #8c8c8c,
-);
-
-@function getColor($key) {
-  @return map-get($colors, $key);
+:root {
+  --background-color: #e5e5e5;
+  --header-text-color: #fff;
+  --secondary-text-color: #545454;
+  --button-activeHover-color: #ff6b01;
+  --description-accent-color: #ff6b08;
+  --main-title-color: #000000;
+  --button-paggination-color: #f7f7f7;
+  --underline-title-colorNotiflix-failure-color: #ff001b;
+  --modal-key-description-color: #8c8c8c;
 }
