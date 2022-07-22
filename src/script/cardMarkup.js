@@ -1,17 +1,32 @@
-// import { MovieApi } from './fetchFilms';
-// const ClassInstance = new MovieApi();
+import { alertNoFilmsFound } from './alerts';
+import { MovieApi } from './fetchFilms';
+import {
+  saveOnLocalStorag,
+  getOnLocalStorage,
+  removeOnLocalStorage,
+} from './localStorage';
 
-// const gallery = document.querySelector('.gallery');
-// console.log(gallery);
+const genresMovieApi = new MovieApi();
 
-// async function MovieApi_TRANDING_MOVIES() {
-//   const trandingMoviesApi = await ClassInstance.fetchFilms();
-//   console.log('trandingMoviesApi: ', trandingMoviesApi);
-//   const trandingMoviesApi_results = trandingMoviesApi.results;
-//   console.log('trandingMoviesApi_results: ', trandingMoviesApi_results);
+const genresListObj = async () => {
+  try {
+    const { data } = await genresMovieApi.fetchMovieGenres();
+    console.log('data.genres=', data.genres);
+    saveOnLocalStorag(LOCALSTORAGE_KEY, data.genres);
+    console.log(genresArr.push(...data.genres));
+    return genresArr.push(...data.genres);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-// }
-// MovieApi_TRANDING_MOVIES();
+const LOCALSTORAGE_KEY = 'genres-kod';
+
+const genresArr = getOnLocalStorage(LOCALSTORAGE_KEY) || [];
+
+if (genresArr.length === 0) {
+  genresListObj();
+}
 
 export function makeMarkup(cards) {
   return cards
@@ -28,15 +43,15 @@ export function makeMarkup(cards) {
         id,
       }) => {
         const date = new Date(release_date);
-        // const positiveGenres = genresArr.filter(itemArr => {
-        //   return genre_ids.includes(itemArr.id);
-        // });
-        // const finalGanresString = positiveGenres.reduce(
-        //   (positiveGenres, item) => {
-        //     return positiveGenres + ' ' + item.name;
-        //   },
-        //   ''
-        // );
+        const positiveGenres = genresArr.filter(({ id }) => {
+          return genre_ids.includes(id);
+        });
+        const finalGanresString = positiveGenres.reduce(
+          (positiveGenres, item) => {
+            return positiveGenres + ' ' + item.name;
+          },
+          ''
+        );
         // const finalRating = Math.round10(vote_average, -2)
         const finalRating = vote_average.toString().padEnd(3, '.0');
         // console.log(finalRating);
@@ -51,9 +66,9 @@ export function makeMarkup(cards) {
                     title || original_title || name || original_name
                   }
                   </p>
-                  <p class="movie-card__info-item">"genres"  | ${
-                    date.getFullYear() || ''
-                  }
+                  <p class="movie-card__info-item">${finalGanresString}  | ${
+          date.getFullYear() || ''
+        }
                   </p>
                 </div>
                 <div class="card__rating">

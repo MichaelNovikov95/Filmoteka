@@ -32,7 +32,7 @@ const onSearchInput = async e => {
       alertNoFilmsFound();
       return;
     } else {
-      galleryEl.innerHTML = renderCards(data.results);
+      galleryEl.innerHTML = makeMarkup(data.results);
     }
   } catch (err) {
     galleryEl.innerHTML = '';
