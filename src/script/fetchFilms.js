@@ -7,11 +7,16 @@ export class MovieApi {
   #SEARCH_URL = `${this.#BASE_URL}/search/movie`;
   #ID_URL = `${this.#BASE_URL}/movie/`;
   #GENRES_URL = `${this.#BASE_URL}/genre/movie/list`;
+  #FILTER_URL = `${this.#BASE_URL}/discover/movie`;
 
   constructor() {
     this.query = null;
     this.id = null;
     this.page = 1;
+    this.genre = null;
+    this.year = null;
+    this.genre = null;
+    this.sort = 'popularity.desc';
   }
 
   fetchFilms() {
@@ -48,6 +53,17 @@ export class MovieApi {
       params: {
         api_key: this.#API_KEY,
         language: 'en-US',
+      },
+    });
+  }
+  fetchMovieFilter() {
+    return axios.get(`${this.#FILTER_URL}`, {
+      params: {
+        api_key: this.#API_KEY,
+        language: 'en-US',
+        primary_release_year: this.year,
+        with_genres: this.genre,
+        sort_by: this.sort,
       },
     });
   }
