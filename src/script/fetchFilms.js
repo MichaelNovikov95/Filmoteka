@@ -6,6 +6,7 @@ export class MovieApi {
   #POPULAR_URL = `${this.#BASE_URL}/trending/movie/week`;
   #SEARCH_URL = `${this.#BASE_URL}/search/movie`;
   #ID_URL = `${this.#BASE_URL}/movie/`;
+  #GENRES_URL = `${this.#BASE_URL}/genre/movie/list`;
 
   constructor() {
     this.query = null;
@@ -39,6 +40,14 @@ export class MovieApi {
         api_key: this.#API_KEY,
         id: this.id,
         page: this.page,
+        language: 'en-US',
+      },
+    });
+  }
+  fetchMovieGenres() {
+    return axios.get(`${this.#GENRES_URL}`, {
+      params: {
+        api_key: this.#API_KEY,
         language: 'en-US',
       },
     });
