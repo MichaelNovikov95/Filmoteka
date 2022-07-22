@@ -30,7 +30,6 @@ p {
 .gallery {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(1, 274px);
     justify-content: center;
     padding-top: 60px;
     padding-bottom: 30px;
@@ -38,11 +37,11 @@ p {
 
     @media screen and (min-width: $tablet) {
         gap: 32px;
-        grid-template-columns: repeat(2, 395px);
+        grid-template-columns: repeat(2, 336px);
     }
 
     @media screen and (min-width: $desktop) {
-        gap: 16px;
+        gap: 32px 16px;
         grid-template-columns: repeat(3, 395px);
     }
 }
@@ -51,28 +50,56 @@ p {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-
-    width: 395px;
-    height: 634px;
+    width: 280px;
+    height: 443px;
     text-decoration: none;
+
+    @media screen and (min-width: $tablet) {
+            width: 336px;
+            height: 495px;
+        }
+
+     @media screen and (min-width: $desktop) {
+            width: 395;
+            height: 634px;
+        }
+    
 }
 
 .movie-card__img {
     display: block;
-    height: 574px;
+    height: 400px;
     object-fit: cover;
     border-radius: 5px;
     background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4));
+
+
+    @media screen and (min-width: $tablet) {
+            height: 455px;
+        }
+     @media screen and (min-width: $desktop) {
+            height: 574px
+        }
 }
 
 .movie-card__info {
     font-family: Roboto;
     font-weight: 500;
-    font-size: 20px;
-    line-height: calc(24 / 20);
-    display: flex;
-    align-items: flex-end;
-    padding-top: 12px;
+    font-size: 12px;
+    line-height: calc(16 / 12);
+    // display: flex;
+    // align-items: flex-end;
+    padding-top: 10px;
+
+    @media screen and (min-width: $tablet) {
+        padding-top: 8px;
+        }
+    
+        @media screen and (min-width: $desktop) {
+            font-size: 20px;
+            line-height: calc(16 / 12);
+            padding-top: 12px
+        }
 }
 
 .movie-card__info-name {
@@ -90,6 +117,18 @@ p {
     background-color: getColor(button-active/hover-color);
     padding: 1px 6px 1px 6px;
     margin-left: 10px;
+    font-size: 13px;
+    line-height: calc(16 / 12);
+
+    @media screen and (min-width: $tablet) {
+            font-size: 15px;
+            line-height: calc(16 / 12);
+        }
+
+    @media screen and (min-width: $desktop) {
+            font-size: 20px;
+            line-height: calc(16 / 12) ;
+        }
 }
 
 .card__rating--text {
@@ -97,4 +136,15 @@ p {
     line-height: calc(14 / 12);
     text-align: center;
     margin: 0;
+}
+
+.movi-card__info-wraper {
+    display: flex;
+    justify-content:space-between;
+    
+    @media screen and (min-width: $desktop) {
+        justify-content: flex-start;
+       
+       
+        }
 }

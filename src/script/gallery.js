@@ -24,7 +24,6 @@ const onSearchInput = async e => {
   movieApi.page = 1;
   try {
     const { data } = await movieApi.fetchFilms();
-    console.log(data.results);
     if (movieApi.query === '') {
       alertNoEmptySearch();
       return;

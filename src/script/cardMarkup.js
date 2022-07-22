@@ -1,32 +1,4 @@
-import { alertNoFilmsFound } from './alerts';
-import { MovieApi } from './fetchFilms';
-import {
-  saveOnLocalStorag,
-  getOnLocalStorage,
-  removeOnLocalStorage,
-} from './localStorage';
-
-const genresMovieApi = new MovieApi();
-
-const genresListObj = async () => {
-  try {
-    const { data } = await genresMovieApi.fetchMovieGenres();
-    console.log('data.genres=', data.genres);
-    saveOnLocalStorag(LOCALSTORAGE_KEY, data.genres);
-    console.log(genresArr.push(...data.genres));
-    return genresArr.push(...data.genres);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const LOCALSTORAGE_KEY = 'genres-kod';
-
-const genresArr = getOnLocalStorage(LOCALSTORAGE_KEY) || [];
-
-if (genresArr.length === 0) {
-  genresListObj();
-}
+import { finalGanresString } from './genresList';
 
 export function makeMarkup(cards) {
   return cards
@@ -43,41 +15,39 @@ export function makeMarkup(cards) {
         id,
       }) => {
         const date = new Date(release_date);
-        const positiveGenres = genresArr.filter(({ id }) => {
-          return genre_ids.includes(id);
-        });
-        const finalGanresString = positiveGenres.reduce(
-          (positiveGenres, item) => {
-            return positiveGenres + ' ' + item.name;
-          },
-          ''
-        );
-        // const finalRating = Math.round10(vote_average, -2)
-        const finalRating = vote_average.toString().padEnd(3, '.0');
+        const choseTitle = title || original_title || name || original_name;
+        const finalTitle = function () {
+          if (choseTitle.length < 33) {
+            return choseTitle.toUpperCase();
+          } else {
+            return choseTitle.toUpperCase().slice(0, 30) + '...';
+          }
+        };
+        // const finalRating = Math.round10(vote_average, -2);
+        const finalRating = vote_average.toString().padEnd(3, '.0').slice(0, 3);
         // console.log(finalRating);
         return (cards = `
             <li class="movie-card gallery_item" data-id="${id}">
-              <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${
-          title || original_title || name || original_name
-        }" loading="lazy" class="movie-card__img"/>
+              <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${choseTitle}" loading="lazy" class="movie-card__img"/>
               <div class="movie-card__info">
-                <div class="movi-card">
-                  <p class="movie-card__info-name">${
-                    title || original_title || name || original_name
-                  }
-                  </p>
-                  <p class="movie-card__info-item">${finalGanresString}  | ${
-          date.getFullYear() || ''
-        }
+                <div class="movie-card__info-name-wraper"
+                  <p class="movie-card__info-name">${finalTitle()}
                   </p>
                 </div>
-                <div class="card__rating">
-                  <p class="card__text card__rating--text">${finalRating}</p>
+                <div class="movi-card__info-wraper">
+                  <div class="movi-card">
+                    <p class="movie-card__info-item">${finalGanresString(
+                      genre_ids
+                    )} | ${date.getFullYear() || ''}
+                    </p>
+                  </div>
+                  <div class="card__rating">
+                    <p class="card__text card__rating--text">${finalRating}</p>
+                  </div>
                 </div>
               </div>
             </li>
           `);
-        // add ${finalGanresString}
       }
     )
     .join('');
