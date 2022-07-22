@@ -1,0 +1,25 @@
+%flex-align-centr {
+  display: flex;
+  align-items: center;
+}
+%flexCentered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Контейнер */
+%container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 320px;
+
+  max-width: 1680px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

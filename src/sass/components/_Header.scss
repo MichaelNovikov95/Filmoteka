@@ -1,50 +1,131 @@
 .page-header {
+  @extend %container;
+  @include font(null, 500, 1.14, null);
   padding-top: 40px;
   padding-bottom: 92px;
-  background-color: rgb(173, 45, 45);
-  background: url(/src/images/header/header-background-mob1x.jpg);
+  background-color: var(--underline-title-colorNotiflix-failure-color);
+  background: url(/src/images/header/header-background-mob1x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
-    background-image: url(/src/images/header/header-background-mob2x.jpg) cover;
+    background-image: url(/src/images/header/header-background-mob2x.png) cover;
   }
   &__text {
     padding-top: 16px;
   }
+  &__menu-container {
+    display: flex;
+  }
+  &__search {
+    max-width: 336px;
+    margin: 0 auto;
+  }
 
   @media screen and (min-width: 768px) {
     padding-bottom: 80px;
-    background-color: rgb(173, 45, 45);
-    background: url(/src/images/header/header-background-tablet1x.jpg);
+    background-color: var(--underline-title-colorNotiflix-failure-color);
+    background: url(/src/images/header/header-background-tablet1x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url(/src/images/header/header-background-tablet2x.jpg)
+      background-image: url(/src/images/header/header-background-tablet2x.png)
         cover;
     }
     &__text {
       padding-top: 20px;
     }
+    &__search {
+      width: 336px;
+    }
+    .logo__link {
+      display: block;
+    }
   }
   @media screen and (min-width: 1280px) {
-    background-color: rgb(173, 45, 45);
-    background: url(/src/images/header/header-background-desktop1x.jpg);
+    background-color: var(--underline-title-colorNotiflix-failure-color);
+    background: url(/src/images/header/header-background-desktop1x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     @media screen and (min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: url(/src/images/header/header-background-desktop2x.jpg)
+      background-image: url(/src/images/header/header-background-desktop2x.png)
         cover;
+    }
+    &__search {
+      width: 394px;
     }
   }
 }
-.search-form {
+.logo {
+  color: var(--header-text-color);
   display: flex;
-}
-.search-form__input {
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  width: 450px;
+  align-items: center;
+
+  &__link {
+    display: none;
+    margin-left: 9px;
+  }
 }
 
-// input[type='email']::placeholder {}
+.search-form {
+  display: flex;
+  position: relative;
+
+  &__input {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+
+    border: 0;
+    color: var(--header-text-color);
+    border-bottom: 1px solid var(--header-text-color);
+    background-color: transparent;
+    outline: 0;
+    &::placeholder {
+      color: var(--header-text-color);
+    }
+  }
+  &__button {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    // background-color: transparent;
+    // border: transparent;
+  }
+}
+
+.nav-menu {
+  margin-left: auto;
+  &__list {
+    display: flex;
+  }
+  &__item {
+    position: relative;
+  }
+  &__item:not(:last-child) {
+    margin-right: 39px;
+  }
+}
+a {
+  color: var(--header-text-color);
+}
+.current-page::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  display: inline-block;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: var(--underline-title-colorNotiflix-failure-color);
+}

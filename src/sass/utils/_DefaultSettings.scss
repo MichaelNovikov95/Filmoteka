@@ -1,10 +1,11 @@
 body {
-  min-width: $mobile;
+  // min-width: $mobile;
   font-family: Roboto, sans-serif;
+  // @include font(12px, 500, 1.16, 0.08em);
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.08em;
-  background-color: getColor('background-color');
+  background-color: var(--background-color);
 }
 
 ul {
@@ -32,4 +33,14 @@ ul,
 p {
   margin-top: 0;
   margin-bottom: 0;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
