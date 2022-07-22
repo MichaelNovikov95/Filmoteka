@@ -9,3 +9,13 @@ export function alertNoFilmsFound() {
     'Sorry, search result not successful. Enter the correct movie name and try again.'
   );
 }
+
+export function alertNoDataGenresQuery() {
+  Notify.failure('Sorry, search result not successful.Try again later))).');
+}
+
+export function alertNoDataGenresLocalStrg() {
+  Notify.failure(
+    'Sorry, search result not successful. Local Storage has problem'
+  );
+}
