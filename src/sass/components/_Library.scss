@@ -1,100 +1,101 @@
 .container {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    margin: 0 auto;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin: 0 auto;
 
-    @media screen and (min-width: $tablet) {
-        .container {
-            width: 768px;
-            padding-left: 32px;
-            padding-right: 32px;
-            padding-bottom: 50px;
-        }
+  @media screen and (min-width: $tablet) {
+    .container {
+      width: 768px;
+      padding-left: 32px;
+      padding-right: 32px;
+      padding-bottom: 50px;
     }
+  }
 
-    @media screen and (min-width: $desktop) {
-        .container {
-            width: 1024px;
-
-
-        }
+  @media screen and (min-width: $desktop) {
+    .container {
+      width: 1024px;
     }
+  }
 }
+// @extend %container;
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 .gallery {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(1, 274px);
-    justify-content: center;
-    padding-top: 60px;
-    padding-bottom: 30px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(1, 274px);
+  justify-content: center;
+  padding-top: 60px;
+  padding-bottom: 30px;
 
+  @media screen and (min-width: $tablet) {
+    gap: 32px;
+    grid-template-columns: repeat(2, 395px);
+  }
 
-    @media screen and (min-width: $tablet) {
-        gap: 32px;
-        grid-template-columns: repeat(2, 395px);
-    }
-
-    @media screen and (min-width: $desktop) {
-        gap: 16px;
-        grid-template-columns: repeat(3, 395px);
-    }
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+    grid-template-columns: repeat(3, 395px);
+  }
 }
 
 .movie-card {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 
-    width: 395px;
-    height: 634px;
-    text-decoration: none;
+  width: 395px;
+  height: 634px;
+  text-decoration: none;
 }
 
 .movie-card__img {
-    display: block;
-    height: 574px;
-    object-fit: cover;
-    border-radius: 5px;
-    background-image: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4));
+  display: block;
+  height: 574px;
+  object-fit: cover;
+  border-radius: 5px;
+  background-image: linear-gradient(
+    rgba(47, 48, 58, 0.4),
+    rgba(47, 48, 58, 0.4)
+  );
 }
 
 .movie-card__info {
-    font-family: Roboto;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: calc(24 / 20);
-    display: flex;
-    align-items: flex-end;
-    padding-top: 12px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  display: flex;
+  align-items: flex-end;
+  padding-top: 12px;
 }
 
 .movie-card__info-name {
-    line-height: 1.17;
-    text-transform: uppercase;
-    color: getColor(main-title-color);
+  line-height: 1.17;
+  text-transform: uppercase;
+  color: getColor(main-title-color);
 }
 
 .movie-card__info-item {
-    color: getColor(description-accent-color);
+  color: getColor(description-accent-color);
 }
 
 .card__rating {
-    border-radius: 5px;
-    background-color: getColor(button-active/hover-color);
-    padding: 1px 6px 1px 6px;
-    margin-left: 10px;
+  border-radius: 5px;
+  background-color: getColor(button-active/hover-color);
+  padding: 1px 6px 1px 6px;
+  margin-left: 10px;
 }
 
 .card__rating--text {
-    color: getColor(header-text-color);
-    line-height: calc(14 / 12);
-    text-align: center;
-    margin: 0;
+  color: getColor(header-text-color);
+  line-height: calc(14 / 12);
+  text-align: center;
+  margin: 0;
 }

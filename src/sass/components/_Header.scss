@@ -109,10 +109,23 @@
   &__list {
     display: flex;
   }
+  &__item {
+    position: relative;
+  }
   &__item:not(:last-child) {
     margin-right: 39px;
   }
 }
 a {
   color: var(--header-text-color);
+}
+.current-page::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  display: inline-block;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: var(--underline-title-colorNotiflix-failure-color);
 }
