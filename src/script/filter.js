@@ -8,11 +8,11 @@ const filterInput = document.querySelectorAll('.filter__input');
 const genreChoice = document.querySelector('#genre_choice');
 const yearChoice = document.querySelector('#year_choice');
 const sortChoice = document.querySelector('#sort_choice');
-const genreTest = document.querySelector('#genre_test');
+
 yearMenu();
-// genreMenu();
+genreMenu();
 const onFilterChoice = async e => {
-  //   e.preventDefault();
+  e.preventDefault();
   searchInputEl.value = '';
   console.log(e.target.value);
   movieApi.genre = genreChoice.value;
@@ -20,7 +20,7 @@ const onFilterChoice = async e => {
   movieApi.sort = sortChoice.value;
   try {
     const { data } = await movieApi.fetchMovieFilter();
-    console.log(data.id);
+    console.log(data.results);
     galleryEl.innerHTML = makeMarkup(data.results);
   } catch (err) {
     galleryEl.innerHTML = '';
@@ -28,18 +28,23 @@ const onFilterChoice = async e => {
   }
 };
 
-filterInput.forEach(item => item.addEventListener('change', onFilterChoice));
+function renderGenreMenu(options) {
+  console.log(options);
+  return options.map(option => {
+    console.log(option);
+    return (options = `<option value="${option.id}">${option.name}</option>`);
+  });
+}
 
-// async function genreMenu() {
-//   genreTest.insertAdjacentHTML(
-//     'beforeend',
-//     '<option value="">Choose genre</option>'
-//   );
-//   const { data } = await movieApi.fetchMovieGenres();
-//   console.log(data);
-//   const rez = data.map(genre => genre.id);
-//   console.log(rez);
-// }
+async function genreMenu() {
+  try {
+    const { data } = await movieApi.fetchMovieGenres();
+    genreChoice.insertAdjacentHTML('beforeend', renderGenreMenu(data.genres));
+    console.log(data.genres);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 function yearMenu() {
   let startYear = 1969;
@@ -55,4 +60,5 @@ function yearMenu() {
   }
   yearChoice.insertAdjacentHTML('beforeend', years);
 }
-yearMenu;
+
+filterInput.forEach(item => item.addEventListener('change', onFilterChoice));
