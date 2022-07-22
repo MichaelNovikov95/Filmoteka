@@ -1,7 +1,7 @@
 import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
-// import { debounce } from 'debounce';
+import { debounce } from 'debounce';
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
