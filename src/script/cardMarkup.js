@@ -59,7 +59,7 @@ export function makeMarkup(cards) {
             <li class="movie-card gallery_item" data-id="${id}">
               <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${
           title || original_title || name || original_name
-        }" loading="lazy" class="movie-card__img"/>
+        }" loading="lazy" class="movie-card__img" id="${id}"/>
               <div class="movie-card__info">
                 <div class="movi-card">
                   <p class="movie-card__info-name">${
