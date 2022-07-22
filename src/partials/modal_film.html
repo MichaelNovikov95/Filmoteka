@@ -1,29 +1,43 @@
 <div class="backdrop">
-  <div class="modal">
-    <button class="close__button"></button>
-    <div class="image__place">
-      <img src="#" alt="" />
+    <div class="modal">
+        <button class="close__button" type="button">
+            <svg class="close__icon">
+                <use class="close" href="./images/sprite/symbol-defs.svg#icon-vectorclose" width="14px" height="14px">
+                </use>
+            </svg>
+        </button>
+        <div class="modal__container">
+
+            <div class="image__place">
+                <img src="#" alt="" />
+            </div>
+            <div class="content__place">
+                <h2 class="modal__header">MOVIE TITLE</h2>
+                <div class="details">
+                    <ul class="details-head">
+                        <li class="details-string">Vote / Votes</li>
+                        <li class="details-string">Popularity</li>
+                        <li class="details-string">Original Title</li>
+                        <li class="details-string">Genre</li>
+                    </ul>
+                    <ul class="details-content">
+                        <li class="details-string"><span class="vote--modal">vote</span> / votes</li>
+                        <li class="details-string">popularity</li>
+                        <li class="details-string">NAME</li>
+                        <li class="details-string">genre</li>
+                    </ul>
+                </div>
+                <h3>ABOUT</h3>
+                <p class="modal-annotation">
+                    The place for annotation of movie.
+                    The place for annotation of movie.
+                    The place for annotation of movie.
+                </p>
+                <ul class="button__place">
+                    <button type="button" class="film-modal__button film-modal__button--active">ADD TO WATCHED</button>
+                    <button type="button" class="film-modal__button">ADD TO QUEUE</button>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="content__place">
-      <h2>MOVIE TITLE</h2>
-      <div class="details">
-        <ul class="details-head">
-          <li>Vote / Votes</li>
-          <li>Popularity</li>
-          <li>Original Title</li>
-          <li>Genre</li>
-        </ul>
-        <ul class="details-content">
-          <li><span class="vote--modal">vote</span> / votes</li>
-          <li>popularity</li>
-          <li>NAME</li>
-          <li>genre</li>
-        </ul>
-      </div>
-      <h3>About</h3>
-      <p>The place for annotation of movie</p>
-      <button class="button">ADD TO WATCHED</button>
-      <button class="button">ADD TO QUEUE</button>
-    </div>
-  </div>
 </div>
