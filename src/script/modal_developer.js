@@ -45,5 +45,20 @@ function closeModalHandle({ target }) {
   }
 }
 
+function escCloseHandle(e) {
+  if (backdrop.classList.contains('is-hidden')) {
+    return;
+  }
+  if (!backdrop.classList.contains('is-hidden')) {
+    if (e.key !== 'Escape') {
+      return;
+    }
+    backdrop.classList.add('is-hidden');
+    body.classList.remove('stop-scroll');
+    swiper.destroy(true, true);
+  }
+}
+
 footerSpan.addEventListener('click', openModalHandle);
 backdrop.addEventListener('click', closeModalHandle);
+document.addEventListener('keydown', escCloseHandle);
