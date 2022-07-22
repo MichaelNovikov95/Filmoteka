@@ -2,7 +2,7 @@ import Swiper from '/node_modules/swiper/swiper-bundle.min.js';
 import '/node_modules/swiper/swiper-bundle.min.css';
 
 const footerSpan = document.querySelector('.footer__link');
-const backdrop = document.querySelector('.backdrop');
+const backdrop = document.querySelector('.team-backdrop');
 
 let swiper = '';
 const desktop = 1200;
@@ -12,14 +12,14 @@ function openModalHandle() {
   backdrop.classList.remove('is-hidden');
 
   if (windowWidth < desktop) {
-    swiper = new Swiper('.modal', {
+    swiper = new Swiper('.team-modal', {
       effect: 'cards',
       grabCursor: true,
     });
     return;
   }
   if (windowWidth >= desktop) {
-    swiper = new Swiper('.modal', {
+    swiper = new Swiper('.team-modal', {
       effect: 'flip',
       grabCursor: true,
       navigation: {
