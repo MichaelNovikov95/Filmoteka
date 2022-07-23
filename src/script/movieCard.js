@@ -15,7 +15,7 @@ export const movieCard = ({
   // на 13 строке нужно поставить картинку заглушку
   genres = genres.map(genre => genre.name).join(', ');
   popularity = parseFloat(popularity).toFixed(1);
-
+  const titleUpperCase = title.toUpperCase();
   return `
 
   <div class="modal">
@@ -30,7 +30,7 @@ export const movieCard = ({
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
       </div>
       <div class="content__place">
-          <h2 class="modal__header">${title}</h2>
+          <h2 class="modal__header">${titleUpperCase}</h2>
           <div class="details">
               <ul class="details-head">
                   <li class="details-string">Vote / Votes</li>
