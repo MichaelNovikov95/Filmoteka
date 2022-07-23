@@ -4,6 +4,7 @@ const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal__container');
 const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
+const closeModalFilmBtn = document.querySelector('.close__button');
 
 const createMarkup = async id => {
   clearCard();
@@ -13,9 +14,7 @@ const createMarkup = async id => {
     console.log(data);
     modal.insertAdjacentHTML('beforeend', movieCard(data));
     // ---------------------------------------------------------------------
-    const closeModalFilmBtn = document.querySelector('.close__button');
     closeModalFilmBtn.addEventListener('click', closeModal);
-    console.log(closeModalFilmBtn);
     // ---------------------------------------------------------------------
   } catch (err) {
     console.log(err);

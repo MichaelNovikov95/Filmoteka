@@ -20,18 +20,15 @@ const onFilterChoice = async e => {
   movieApi.sort = sortChoice.value;
   try {
     const { data } = await movieApi.fetchMovieFilter();
-    console.log(data.results);
     galleryEl.innerHTML = makeMarkup(data.results);
   } catch (err) {
     galleryEl.innerHTML = '';
-    console.log(err.message);
   }
 };
 
 function renderGenreMenu(options) {
   console.log(options);
   return options.map(option => {
-    console.log(option);
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
 }
@@ -40,7 +37,6 @@ async function genreMenu() {
   try {
     const { data } = await movieApi.fetchMovieGenres();
     genreChoice.insertAdjacentHTML('beforeend', renderGenreMenu(data.genres));
-    console.log(data.genres);
   } catch (err) {
     console.log(err);
   }
