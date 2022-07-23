@@ -18,7 +18,7 @@ export class MovieApi {
     this.genre = null;
     this.sort = 'popularity.desc';
   }
-
+  // by input
   fetchFilms() {
     return axios.get(`${this.#SEARCH_URL}`, {
       params: {
