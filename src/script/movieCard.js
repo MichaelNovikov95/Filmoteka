@@ -18,6 +18,13 @@ export const movieCard = ({
 
   return `
 
+  <div class="modal">
+    <button class="close__button" data-modal-close>
+        <svg class="close__icon" width="14" height="14">
+            <use class="close" href="./images/sprite/symbol-defs.svg#icon-vectorclose" width="14px" height="14px"></use>
+        </svg>
+    </button>
+    <div class="modal__container">
 
       <div class="image__place" id=${id}>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
