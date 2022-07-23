@@ -1,7 +1,8 @@
 import { MovieApi } from './fetchFilms';
 import { movieCard } from './movieCard';
-const backdrop = document.querySelector('.backdrop');
-const modal = document.querySelector('.modal__container');
+
+export const backdrop = document.querySelector('.backdrop');
+export const modal = document.querySelector('.modal__container');
 const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
@@ -37,7 +38,7 @@ galleryEl.addEventListener('click', onGalleryContainerClick);
 
 // ---------------------------------------------------------------------
 
-function closeModal() {
+export function closeModal() {
   backdrop.classList.add('is-hidden');
   modal.innerHTML = '';
   closeModalFilmBtn.removeEventListener('click', closeModal);
