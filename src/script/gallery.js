@@ -48,13 +48,13 @@ const onSearchInput = async e => {
       alertNoEmptySearch();
       console.log('i am here');
       galleryEl.innerHTML = '';
-      refs.container.classList.add('.tui-pagination.hidden');
+      refs.wrapper.classList.add('is-hidden');
 
       return;
     } else if (data.total_results === 0) {
       alertNoFilmsFound();
       console.log('i am here 2');
-      refs.container.classList.add('.tui-pagination.hidden');
+      refs.wrapper.classList.add('is-hidden');
       galleryEl.innerHTML = '';
       return;
     } else {
