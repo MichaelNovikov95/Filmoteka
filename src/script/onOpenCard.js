@@ -2,7 +2,7 @@ import { MovieApi } from './fetchFilms';
 import { movieCard } from './movieCard';
 
 export const backdrop = document.querySelector('.backdrop');
-const modal = document.querySelector('.modal__container');
+export const modal = document.querySelector('.modal__container');
 const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
