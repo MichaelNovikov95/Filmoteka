@@ -23,7 +23,16 @@
     </nav>
   </div>
   <div class="header-search">
-    <input
+    <svg class="header-search__icon-record is-hidden" width="18px" height="18px">
+      <use href="./images/sprite/symbol-defs.svg#icon-record"></use>
+    </svg>
+    <button class="header-search__btn-mic" data-active-mic >
+      <svg class="header-search__icon-mic" width="24px" height="24px">
+        <use href="./images/sprite/symbol-defs.svg#icon-mic"></use>
+      </svg>
+    </button>
+    <label>
+      <input
       class="header-search__input js-search"
       type="text"
       name="searchQuery"
@@ -31,6 +40,7 @@
       placeholder="Movie search"
       requaired
     />
+    </label>
     <svg class="header-search__icon" width="12px" height="12px">
       <use href="./images/sprite/symbol-defs.svg#icon-search"></use>
     </svg>

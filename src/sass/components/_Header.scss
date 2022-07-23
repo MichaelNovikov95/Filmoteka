@@ -10,7 +10,6 @@
     rgba(5, 5, 5, 1) 76%
   );
 
-
   background: url(/src/images/header/header-background-mob1x.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -34,7 +33,6 @@
   }
 
   @media screen and (min-width: 768px) {
-
     padding-bottom: 80px;
     background: radial-gradient(
       circle,
@@ -136,6 +134,39 @@
     top: 0;
     background-color: transparent;
     border: transparent;
+  }
+  &__label {
+    position: relative;
+  }
+  &__btn-mic {
+    position: absolute;
+    left: -30px;
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+    color: var(--header-text-color);
+    transition: transform 500ms linear;
+  }
+  &__btn-mic:hover {
+    color: var(--button-activeHover-color);
+    transform: scale(1.2);
+  }
+  &__btn-mic:active {
+    transform: scale(1.6);
+  }
+  &__icon-mic {
+    fill: currentColor;
+  }
+  &__icon-record {
+    position: absolute;
+    left: -60px;
+    top: 2px;
+    fill: red;
+    background-color: transparent;
+    border: transparent;
+  }
+  &__icon-record.is-hidden {
+    display: none;
   }
 }
 
