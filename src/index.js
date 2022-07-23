@@ -4,3 +4,5 @@ import './script/cardMarkup';
 import './script/onOpenCard';
 import './script/filter';
 // import './script/scrollUp';
+import './script/onCloseModal'
+
