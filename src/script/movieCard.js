@@ -16,6 +16,8 @@ export const movieCard = ({
   genres = genres.map(genre => genre.name).join(', ');
   popularity = parseFloat(popularity).toFixed(1);
   const titleUpperCase = title.toUpperCase();
+  const originalTitleUpperCase = original_title.toUpperCase();
+  const voteAverageFixed =vote_average.toFixed(1)
   return `
       <div class="image__place" id=${id}>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
@@ -30,9 +32,9 @@ export const movieCard = ({
                   <li class="details-string">Genre</li>
               </ul>
               <ul class="details-content">
-                  <li class="details-string"><span class="vote--modal">${vote_average}</span> / ${vote_count}</li>
+                  <li class="details-string"><span class="vote--modal">${voteAverageFixed}</span> / ${vote_count}</li>
                   <li class="details-string">${popularity}</li>
-                  <li class="details-string">${original_title}</li>
+                  <li class="details-string">${originalTitleUpperCase}</li>
                   <li class="details-string">${genres}</li>
               </ul>
           </div>
