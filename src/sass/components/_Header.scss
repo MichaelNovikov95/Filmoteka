@@ -3,7 +3,12 @@
   @include font(null, 500, 1.14, null);
   padding-top: 40px;
   padding-bottom: 92px;
-  background-color: var(--underline-title-colorNotiflix-failure-color);
+  background: radial-gradient(
+    circle,
+    rgba(208, 4, 4, 1) 7%,
+    rgba(5, 5, 5, 1) 76%
+  );
+
   background: url(/src/images/header/header-background-mob1x.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,7 +33,11 @@
 
   @media screen and (min-width: 768px) {
     padding-bottom: 80px;
-    background-color: var(--underline-title-colorNotiflix-failure-color);
+    background: radial-gradient(
+      circle,
+      rgba(208, 4, 4, 1) 7%,
+      rgba(5, 5, 5, 1) 76%
+    );
     background: url(/src/images/header/header-background-tablet1x.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -60,7 +69,11 @@
     }
   }
   @media screen and (min-width: 1280px) {
-    background-color: var(--underline-title-colorNotiflix-failure-color);
+    background: radial-gradient(
+      circle,
+      rgba(208, 4, 4, 1) 7%,
+      rgba(5, 5, 5, 1) 76%
+    );
     background: url(/src/images/header/header-background-desktop1x.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -103,6 +116,7 @@
   &__input {
     width: 100%;
     border: 0;
+    @include font(14, 400, 1.14, null);
     color: var(--header-text-color);
     border-bottom: 1px solid var(--header-text-color);
     background-color: transparent;
