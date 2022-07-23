@@ -11,6 +11,7 @@
     pointer-events: none;
 }
 .modal{
+    
     position: relative;    
     top: 50%;
     left: 50%;
@@ -181,7 +182,7 @@
     width: 14px;
     height: 14px;
     background-color: #FFFFFF;
-    // border: #000000 1px solid;
+    border: none;
 }
 .close__icon{
     position: absolute;
