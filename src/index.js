@@ -5,3 +5,4 @@ import './script/onOpenCard';
 import './script/filter';
 import './script/microphone';
 import './script/onCloseModal'
+// import './script/scrollUp';
