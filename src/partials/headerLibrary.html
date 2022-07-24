@@ -16,7 +16,9 @@
           <a class="nav-menu__link" href="/src/index.html">HOME</a>
         </li>
         <li class="nav-menu__item">
-          <a class="nav-menu__link current-page-red" href="/src/library.html"
+          <a
+            class="nav-menu__link current-page-red js-library__ref"
+            href="/src/library.html"
             >MY LIBRARY</a
           >
         </li>
@@ -24,8 +26,8 @@
     </nav>
   </div>
 
-  <div class="page-header__buttons">
-    <button class="button watched active">Watched</button>
-    <button class="button queued">Queue</button>
+  <div class="page-header__buttons js-btn__header">
+    <button class="button queued active" data-action="queue">Queue</button>
+    <button class="button watched" data-action="watched">Watched</button>
   </div>
 </header>

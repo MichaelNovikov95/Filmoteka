@@ -3,8 +3,10 @@ import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
 import { debounce } from 'debounce';
 import { paginationTui, paginationStart } from './pagination';
+
 import refs from './refs';
 import { filter } from './filter';
+
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
