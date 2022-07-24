@@ -12,7 +12,7 @@ const genresListObj = async () => {
   try {
     const { data } = await genresMovieApi.fetchMovieGenres();
     console.log('data.genres=', data.genres);
-    saveOnLocalStorag(LOCALSTORAGE_KEY, data.genres);
+    saveOnLocalStorag(localStorageKeyGenres, data.genres);
     console.log(genresArr.push(...data.genres));
     return genresArr.push(...data.genres);
   } catch (err) {
@@ -20,9 +20,9 @@ const genresListObj = async () => {
   }
 };
 
-const LOCALSTORAGE_KEY = 'genres-kod';
+const localStorageKeyGenres = 'genres-kod';
 
-const genresArr = getOnLocalStorage(LOCALSTORAGE_KEY) || [];
+const genresArr = getOnLocalStorage(localStorageKeyGenres) || [];
 
 if (genresArr.length === 0) {
   genresListObj();

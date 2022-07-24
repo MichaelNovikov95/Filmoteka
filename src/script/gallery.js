@@ -7,6 +7,7 @@ import { microphon } from './microphone';
 import { filter } from './filter';
 import refs from './refs';
 
+
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
