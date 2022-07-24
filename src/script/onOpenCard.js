@@ -28,6 +28,7 @@ const onGalleryContainerClick = e => {
     return;
   }
   backdrop.classList.remove('is-hidden');
+  document.body.classList.add('.modal-is-open');
   createMarkup(e.target.id);
 };
 
@@ -40,6 +41,7 @@ galleryEl.addEventListener('click', onGalleryContainerClick);
 
 export function closeModal() {
   backdrop.classList.add('is-hidden');
+  document.body.classList.remove('.modal-is-open');
   modal.innerHTML = '';
   closeModalFilmBtn.removeEventListener('click', closeModal);
 }
