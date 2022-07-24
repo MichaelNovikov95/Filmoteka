@@ -58,10 +58,9 @@ const onSearchInput = async e => {
     // порог отключения пагинации - < 2 страниц
     if (data.total_pages < 2) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
-    }
+    } else refs.paginationWrap.classList.remove('tui-pagination', 'hidden');
     if (data.total_results === 0) {
       alertNoFilmsFound();
-      console.log('i am here 2 пагинация спряталась - УРА');
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       galleryEl.innerHTML = '';
       return;

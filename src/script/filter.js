@@ -26,8 +26,12 @@ const onFilterChoice = async e => {
   movieApi.sort = sortChoice.value;
   try {
     const { data } = await movieApi.fetchMovieFilter();
+    if (data.total_pages < 2) {
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+    } else refs.paginationWrap.classList.remove('tui-pagination', 'hidden');
     galleryEl.innerHTML = makeMarkup(data.results);
     paginationTui.on('afterMove', filter);
+    paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
   }

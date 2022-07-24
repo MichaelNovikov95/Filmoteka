@@ -3,7 +3,7 @@ import { makeMarkup } from './cardMarkup';
 import { paginationTui, paginationStart } from './pagination';
 import { popular, search } from './gallery';
 import { filter } from './filter';
-
+import refs from './refs';
 const galleryEl = document.querySelector('.gallery');
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -65,6 +65,10 @@ const onSearchInputForMicrophone = async movieName => {
   movieApi.query = movieName;
   try {
     const { data } = await movieApi.fetchFilms();
+
+    if (data.total_pages < 2) {
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+    } else refs.paginationWrap.classList.remove('tui-pagination', 'hidden');
     if (movieApi.query === '') {
       alertNoEmptySearch();
       return;
@@ -75,6 +79,7 @@ const onSearchInputForMicrophone = async movieName => {
       galleryEl.innerHTML = makeMarkup(data.results);
     }
     paginationTui.on('afterMove', microphon);
+    paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
     console.log(err.message);
