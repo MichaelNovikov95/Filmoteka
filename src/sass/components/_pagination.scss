@@ -7,16 +7,6 @@
  * @license MIT
  */
 // @charset 'utf-8';
-// .visually-hidden {
-//   position: absolute;
-//   width: 1px;
-//   height: 1px;
-//   margin: -1px;
-//   border: 0;
-//   padding: 0;
-//   clip: rect(0 0 0 0);
-//   overflow: hidden;
-// }
 
 .tui-pagination * {
   -moz-user-select: none;
@@ -277,6 +267,6 @@ a.tui-page-btn.tui-next-is-ellip.tui-last-child {
 .tui-pagination.hidden {
   display: none;
 }
-// .is-hidden {
-//   display: none;
-// }
+.wraper {
+  margin-bottom: 20px;
+}

@@ -7,7 +7,6 @@ import { microphon } from './microphone';
 import { filter } from './filter';
 import refs from './refs';
 
-
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
@@ -40,22 +39,22 @@ const onSearchInput = async e => {
   paginationTui.off('afterMove', popular);
   paginationTui.off('afterMove', filter);
   paginationTui.off('afterMove', microphon);
-  paginationTui.movePageTo(1);
 
   // console.log(e.target);
   movieApi.query = e.target.value.toLowerCase();
   movieApi.page = 1;
+  // paginationTui.movePageTo(1);
+  paginationTui.reset();
 
   try {
     if (movieApi.query === '') {
       alertNoEmptySearch();
       console.log('i am here');
-      // нет смылса прятать пагинацию и перерисовывать интрефес на пустой если запрос после ретерна все равно произойдет
-      // galleryEl.innerHTML = '';
-      // refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+      galleryEl.innerHTML = '';
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       return;
     }
-    const { data } = await movieApi.fetchFilms(); // await наверное делает всю погоду... запрос после ретурна все равно идет.
+    const { data } = await movieApi.fetchFilms();
     // порог отключения пагинации - < 2 страниц
     if (data.total_pages < 2) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
