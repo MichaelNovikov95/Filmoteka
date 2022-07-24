@@ -104,16 +104,16 @@ p {
 .movie-card__info-name {
   line-height: 1.17;
   text-transform: uppercase;
-  color: getColor(main-title-color);
+  color: var(--main-title-color);
 }
 
 .movie-card__info-item {
-  color: getColor(description-accent-color);
+  color: var(--description-accent-color);
 }
 
 .card__rating {
     border-radius: 5px;
-    background-color: getColor(button-active/hover-color);
+    background-color: var(--button-activeHover-color);
     padding: 1px 6px 1px 6px;
     margin-left: 10px;
     font-size: 13px;
@@ -131,7 +131,7 @@ p {
 }
 
 .card__rating--text {
-    color: getColor(header-text-color);
+    color: var(--header-text-color);
     line-height: calc(14 / 12);
     text-align: center;
     margin: 0;
