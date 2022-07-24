@@ -2,6 +2,7 @@ import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
 import { paginationTui, paginationStart } from './pagination';
 import { popular, search } from './gallery';
+import { microphon } from './microphone';
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
 const searchInputEl = document.querySelector('.js-search');
@@ -16,16 +17,17 @@ const onFilterChoice = async e => {
   e.preventDefault();
   paginationTui.off('afterMove', popular);
   paginationTui.off('afterMove', search);
-
+  paginationTui.off('afterMove', microphon);
+  paginationTui.movePageTo(1);
   searchInputEl.value = '';
-  console.log(e.target.value);
+  // console.log(e.target.value);
   movieApi.genre = genreChoice.value;
   movieApi.year = yearChoice.value;
   movieApi.sort = sortChoice.value;
   try {
-    paginationTui.on('afterMove', filter);
     const { data } = await movieApi.fetchMovieFilter();
     galleryEl.innerHTML = makeMarkup(data.results);
+    paginationTui.on('afterMove', filter);
   } catch (err) {
     galleryEl.innerHTML = '';
   }
@@ -37,7 +39,7 @@ export async function filter(eventData) {
 }
 
 function renderGenreMenu(options) {
-  console.log(options);
+  // console.log(options);
   return options.map(option => {
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
