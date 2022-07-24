@@ -11,6 +11,7 @@
     pointer-events: none;
 }
 .modal{
+    
     position: relative;    
     top: 50%;
     left: 50%;
@@ -77,9 +78,11 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 5px;
 }
 .content__place{
     // position: relative;
+    font-weight: 500;
     margin-top: 20px;
     @media screen and (min-width: 320px){
         width: 240px;
@@ -125,6 +128,19 @@
 .details-string:not(:last-child){
     margin-bottom: 8px;
 }
+.vote--modal{
+    display: inline-block;
+    width: 36px;
+    height: 16px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border-radius: 5px;
+    align-items:inherit;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #FF6B01;
+    
+}
 .modal-annotation{
     margin-top: 8px;
     margin-bottom: 20px;
@@ -138,6 +154,7 @@
     border: 1px solid #000000 ;
     border-radius: 5px;
     background-color: #FFFFFF;
+    font-weight: 500;
     @media screen and (min-width: 320px){
         width: 110px;
         &:not(:last-child) {
@@ -158,6 +175,7 @@
     &--active{
         border: none;
         background-color: #FF6B01;
+        color: #FFFFFF;
     }
 }
 .button__place{
@@ -181,7 +199,7 @@
     width: 14px;
     height: 14px;
     background-color: #FFFFFF;
-    // border: #000000 1px solid;
+    border: none;
 }
 .close__icon{
     position: absolute;

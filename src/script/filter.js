@@ -1,6 +1,7 @@
 import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
-
+import { paginationTui, paginationStart } from './pagination';
+import { popular, search } from './gallery';
 const movieApi = new MovieApi();
 const galleryEl = document.querySelector('.gallery');
 const searchInputEl = document.querySelector('.js-search');
@@ -13,18 +14,27 @@ yearMenu();
 genreMenu();
 const onFilterChoice = async e => {
   e.preventDefault();
+  paginationTui.off('afterMove', popular);
+  paginationTui.off('afterMove', search);
+
   searchInputEl.value = '';
   console.log(e.target.value);
   movieApi.genre = genreChoice.value;
   movieApi.year = yearChoice.value;
   movieApi.sort = sortChoice.value;
   try {
+    paginationTui.on('afterMove', filter);
     const { data } = await movieApi.fetchMovieFilter();
     galleryEl.innerHTML = makeMarkup(data.results);
   } catch (err) {
     galleryEl.innerHTML = '';
   }
 };
+export async function filter(eventData) {
+  movieApi.page = eventData.page;
+  const { data } = await movieApi.fetchMovieFilter();
+  galleryEl.innerHTML = makeMarkup(data.results);
+}
 
 function renderGenreMenu(options) {
   console.log(options);
