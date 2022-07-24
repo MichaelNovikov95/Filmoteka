@@ -15,17 +15,8 @@ const libraryMovieApi = new MovieApi();
 const localStorageKeyQueue = 'queue';
 const localStorageKeyWatched = 'watched';
 
-saveOnLocalStorag(localStorageKeyWatched, 453395);
-
-const arrIdMovieQueue = [725201, 453395, 756999, 718789, 438148];
-// const arrIdMovieQueue = getOnLocalStorage(localStorageKeyQueue) || [];
-const arrIdMovieWathed = [861072, 545611, 639933, 414906, 361743];
-// const arrIdMovieWathed = getOnLocalStorage(localStorageKeyWatched) || [];
-
-console.log(arrIdMovieQueue);
-console.log(refs.refLibreryHeaderEl);
-
-console.log(refs.galleryEl);
+const arrIdMovieQueue = getOnLocalStorage(localStorageKeyQueue) || [];
+const arrIdMovieWathed = getOnLocalStorage(localStorageKeyWatched) || [];
 
 if (arrIdMovieQueue.length !== 0) {
   startLibraryMarkup(arrIdMovieQueue);
@@ -33,17 +24,12 @@ if (arrIdMovieQueue.length !== 0) {
 
 async function startLibraryMarkup(localStorageBase) {
   try {
-    console.log('start1');
     const objQueue = await fetchCardsLibrary(localStorageBase);
-    console.log(objQueue);
     const norm1 = objQueue.map(card => card.data);
-    console.log(norm1);
     const norm2 = norm1.map(item => item.genres.map(genre => genre.id || []));
-    console.log(norm2);
     const finalcards = norm1.map(
       (item, index) => (item.genre_ids = norm2[index])
     );
-    console.log(finalcards);
     refs.galleryEl.innerHTML = makeMarkup(norm1);
   } catch (error) {
     console.log(error.message);
@@ -53,9 +39,7 @@ async function startLibraryMarkup(localStorageBase) {
 async function fetchCardsLibrary(arr) {
   const arrayOfPromises = arr.map(async id => {
     libraryMovieApi.id = id;
-    console.log(libraryMovieApi.id);
     const response = await libraryMovieApi.fetchMovieById();
-    console.log(response);
     return response;
   });
   const cardMovieLibrary = await Promise.all(arrayOfPromises);
