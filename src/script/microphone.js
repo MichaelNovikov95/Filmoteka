@@ -1,6 +1,9 @@
 import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
-
+import { paginationTui, paginationStart } from './pagination';
+import { popular, search } from './gallery';
+import { filter } from './filter';
+import refs from './refs';
 const galleryEl = document.querySelector('.gallery');
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -53,10 +56,19 @@ function stopRecognition() {
 }
 
 const onSearchInputForMicrophone = async movieName => {
+  paginationTui.off('afterMove', popular);
+  paginationTui.off('afterMove', search);
+  paginationTui.off('afterMove', filter);
+  paginationTui.movePageTo(1);
+
   movieApi.page = 1;
   movieApi.query = movieName;
   try {
     const { data } = await movieApi.fetchFilms();
+
+    if (data.total_pages < 2) {
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+    } else refs.paginationWrap.classList.remove('tui-pagination', 'hidden');
     if (movieApi.query === '') {
       alertNoEmptySearch();
       return;
@@ -66,8 +78,15 @@ const onSearchInputForMicrophone = async movieName => {
     } else {
       galleryEl.innerHTML = makeMarkup(data.results);
     }
+    paginationTui.on('afterMove', microphon);
+    paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
     console.log(err.message);
   }
 };
+export async function microphon(eventData) {
+  movieApi.page = eventData.page;
+  const { data } = await movieApi.fetchFilms();
+  galleryEl.innerHTML = makeMarkup(data.results);
+}

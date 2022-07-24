@@ -3,9 +3,10 @@ import { MovieApi } from './fetchFilms';
 import { makeMarkup } from './cardMarkup';
 import { debounce } from 'debounce';
 import { paginationTui, paginationStart } from './pagination';
-
-import refs from './refs';
+import { microphon } from './microphone';
 import { filter } from './filter';
+import refs from './refs';
+
 
 const DEBOUNCE_DELAY = 500;
 const movieApi = new MovieApi();
@@ -15,6 +16,7 @@ const searchInputEl = document.querySelector('.js-search');
 const renderPopularFilms = async () => {
   paginationTui.off('afterMove', filter);
   paginationTui.off('afterMove', search);
+  paginationTui.off('afterMove', microphon);
   paginationTui.movePageTo(1);
   try {
     const { data } = await movieApi.fetchPopularFilms();
@@ -37,32 +39,38 @@ const onSearchInput = async e => {
   e.preventDefault();
   paginationTui.off('afterMove', popular);
   paginationTui.off('afterMove', filter);
+  paginationTui.off('afterMove', microphon);
   paginationTui.movePageTo(1);
-  console.log(e.target);
+
+  // console.log(e.target);
   movieApi.query = e.target.value.toLowerCase();
   movieApi.page = 1;
 
   try {
-    const { data } = await movieApi.fetchFilms();
-
-    // refs.container.classList.add('.effect.tui-pagination.hidden');
     if (movieApi.query === '') {
       alertNoEmptySearch();
       console.log('i am here');
-      galleryEl.innerHTML = '';
-      refs.wrapper.classList.add('is-hidden');
-
+      // нет смылса прятать пагинацию и перерисовывать интрефес на пустой если запрос после ретерна все равно произойдет
+      // galleryEl.innerHTML = '';
+      // refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       return;
-    } else if (data.total_results === 0) {
+    }
+    const { data } = await movieApi.fetchFilms(); // await наверное делает всю погоду... запрос после ретурна все равно идет.
+    // порог отключения пагинации - < 2 страниц
+    if (data.total_pages < 2) {
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+    } else refs.paginationWrap.classList.remove('tui-pagination', 'hidden');
+    if (data.total_results === 0) {
       alertNoFilmsFound();
-      console.log('i am here 2');
-      refs.wrapper.classList.add('is-hidden');
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       galleryEl.innerHTML = '';
       return;
     } else {
       galleryEl.innerHTML = makeMarkup(data.results);
     }
     paginationTui.on('afterMove', search);
+    // без лищних пустых страничек
+    paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
     console.log(err.message);

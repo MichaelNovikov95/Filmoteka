@@ -6,5 +6,5 @@ export const refs = {
   btnGelleryWatchedEl: document.querySelector('[data-action="watched"]'),
 export default {
   container: document.getElementById('pagination'),
-  wrapper: document.querySelector('.wraper'),
+  paginationWrap: document.querySelector('.wraper'),
 };
