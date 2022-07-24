@@ -33,7 +33,7 @@ recognition.onerror = function (e) {
 };
 
 function listenSpeech(e) {
-  transcript = e.results[0][0].transcript;
+  const transcript = e.results[0][0].transcript;
   searchInputEl.value = transcript;
   if (e.results[0].isFinal) {
     stopRecognition();
