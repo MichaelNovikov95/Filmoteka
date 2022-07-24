@@ -7,8 +7,15 @@ import {
   removeOnLocalStorage,
 } from './localStorage';
 import { refs } from './refs';
+import { movieCard } from './movieCard';
+import { closeModal } from './onOpenCard';
+import { backdrop } from './onOpenCard';
+import { modal } from './onOpenCard';
+import { clearCard, onGalleryContainerClick, createMarkup } from './onOpenCard';
+import { movieCard } from './movieCard';
 
 refs.btnHeaderEl.addEventListener('click', selectBTN);
+refs.galleryEl.addEventListener('click', onGalleryContainerClick);
 
 const libraryMovieApi = new MovieApi();
 
@@ -177,3 +184,19 @@ function selectBTN(event) {
 //     selectBtn.textContent = 'ADD TO QUEUE';
 //   }
 // }
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!backdrop.addEventListener(
+  'click',
+  onClickBackdrop
+);
+document.addEventListener('keydown', onClickEsc);
+function onClickBackdrop(event) {
+  if (event.currentTarget === event.target) {
+    closeModal();
+  }
+}
+function onClickEsc(event) {
+  if (event.code === 'Escape') {
+    closeModal();
+  }
+}

@@ -44,3 +44,4 @@ export function closeModal() {
   closeModalFilmBtn.removeEventListener('click', closeModal);
 }
 // ---------------------------------------------------------------------
+export { clearCard, onGalleryContainerClick, createMarkup };
