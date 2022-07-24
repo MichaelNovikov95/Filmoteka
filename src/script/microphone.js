@@ -23,36 +23,43 @@ microphoneIcon.addEventListener('click', function () {
   console.log('Ready to receive a movieName command.');
 });
 
-recognition.onspeechend = function () {
-  recognition.stop();
-};
-
 recognition.onnomatch = function (e) {
   alert("I didn't recognise that movie.");
+  recordIcon.classList.add('is-hidden');
+  microphoneIcon.classList.remove('-active');
+  recognition.stop();
 };
 
 recognition.onerror = function (e) {
   alert(`Error occurred in recognition: ${e.error}`);
+  recordIcon.classList.add('is-hidden');
+  microphoneIcon.classList.remove('-active');
+  recognition.stop();
 };
 
 function listenSpeech(e) {
   const transcript = e.results[0][0].transcript;
   searchInputEl.value = transcript;
   if (e.results[0].isFinal) {
-    stopRecognition();
-    onSearchInputForMicrophone(transcript);
+    console.log('is Final', e.results[0].isFinal);
+    recognition.onspeechend = stopRecognition();
   }
+  onSearchInputForMicrophone(transcript);
 }
 
 function startRecognition() {
   recognition.addEventListener('result', listenSpeech);
   recordIcon.classList.remove('is-hidden');
+  microphoneIcon.classList.add('-active');
   recognition.start();
 }
 function stopRecognition() {
+  console.log('Speech has stopped being detected');
   recognition.removeEventListener('result', listenSpeech);
   recordIcon.classList.add('is-hidden');
+  microphoneIcon.classList.remove('-active');
   recognition.stop();
+  console.log('recognition.stop', recognition.stop());
 }
 
 const onSearchInputForMicrophone = async movieName => {

@@ -147,16 +147,10 @@
     color: var(--header-text-color);
     transition: transform 500ms linear;
   }
-  &__btn-mic:hover {
-    color: var(--button-activeHover-color);
-    transform: scale(1.2);
-  }
-  &__btn-mic:active {
-    transform: scale(1.6);
-  }
   &__icon-mic {
     fill: currentColor;
   }
+
   &__icon-record {
     position: absolute;
     left: -60px;
@@ -169,7 +163,18 @@
     display: none;
   }
 }
-
+.-active {
+  animation: fire-color 700ms linear infinite alternate;
+}
+@keyframes fire-color {
+  0% {
+    color: var(--header-text-color);
+  }
+  100% {
+    transform: scale(1.7);
+    color: var(--button-activeHover-color);
+  }
+}
 .nav-menu {
   margin-left: auto;
   &__list {
