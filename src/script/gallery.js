@@ -28,6 +28,8 @@ const renderPopularFilms = async () => {
 };
 renderPopularFilms();
 
+console.log(window.location.href);
+
 export async function popular(eventData) {
   movieApi.page = eventData.page;
   const { data } = await movieApi.fetchPopularFilms();
