@@ -1,11 +1,16 @@
 import { MovieApi } from './fetchFilms';
 import { movieCard } from './movieCard';
+import { refs } from './refs';
+// import { selectBTNmodal } from './modalButton';
 import { loader } from './loader';
+
 export const backdrop = document.querySelector('.backdrop');
 export const modal = document.querySelector('.modal__container');
 const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
+
+// refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
 
 const createMarkup = async id => {
   loader.classList.remove('is-hidden');
@@ -18,12 +23,14 @@ const createMarkup = async id => {
     // ---------------------------------------------------------------------
 
     closeModalFilmBtn.addEventListener('click', closeModal);
+
     // ---------------------------------------------------------------------
   } catch (err) {
     console.log(err);
   }
   loader.classList.add('is-hidden');
 };
+
 
 const onGalleryContainerClick = e => {
   console.log(e.target.nodeName);
