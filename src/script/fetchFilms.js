@@ -13,9 +13,10 @@ export class MovieApi {
     this.query = null;
     this.id = null;
     this.page = 1;
-    this.genre = null;
+    // this.noGenres =
+    //   '12,16,35,80,99,18,10751,14,36,27,10402,9648,10749,878,10770,53,10752,37';
+    this.genre = '';
     this.year = null;
-    this.genre = null;
     this.sort = 'popularity.desc';
   }
   // by input
@@ -57,12 +58,26 @@ export class MovieApi {
     });
   }
   fetchMovieFilter() {
+    console.log('this.genre: ', this.genre);
     return axios.get(`${this.#FILTER_URL}`, {
       params: {
         api_key: this.#API_KEY,
         language: 'en-US',
         primary_release_year: this.year,
         with_genres: this.genre,
+        sort_by: this.sort,
+        page: this.page,
+        // without_genres: this.noGenres,
+      },
+    });
+  }
+  fetchMovieFilter2() {
+    console.log('this.genre: ', this.genre);
+    return axios.get(`${this.#FILTER_URL}`, {
+      params: {
+        api_key: this.#API_KEY,
+        language: 'en-US',
+        primary_release_year: this.year,
         sort_by: this.sort,
         page: this.page,
       },

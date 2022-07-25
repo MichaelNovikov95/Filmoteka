@@ -19,46 +19,66 @@ const onFilterChoice = async e => {
   paginationTui.off('afterMove', search);
   paginationTui.off('afterMove', microphon);
   paginationTui.off('afterMove', filter);
+
   // paginationTui.movePageTo(1);
 
   searchInputEl.value = '';
-  // console.log(e.target.value);
-  movieApi.genre = genreChoice.value;
-  movieApi.year = yearChoice.value;
-  movieApi.sort = sortChoice.value;
-  // paginationTui.reset();
+  console.log('e.target.value: ', e.target.value);
+  // console.log('target: ', e.target);
+  console.log('name: ', e.target.name);
+  // console.log('genreChoice.value:', genreChoice.value);
+  movieApi[e.target.name] = e.target.value;
+  // movieApi.genre = genreChoice.value;
+  // movieApi.year = yearChoice.value;
+  // movieApi.sort = sortChoice.value;
 
   try {
-    const { data } = await movieApi.fetchMovieFilter();
+    let result;
+    console.log(result);
+    movieApi.genre
+      ? (result = await movieApi.fetchMovieFilter())
+      : (result = await movieApi.fetchMovieFilter2());
+    console.log('result.data: ', result.data);
 
-    if (data.total_pages < 2) {
+    if (result.data.total_pages < 2) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
     }
-    if (data.results.length === 0) {
+    if (result.data.results.length === 0) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       console.log('no results');
     }
+    paginationStart(result.data);
 
-    galleryEl.innerHTML = makeMarkup(data.results);
+    galleryEl.innerHTML = makeMarkup(result.data.results);
     paginationTui.on('afterMove', filter);
-
+    console.log('data.results: ', result.data.results);
+    console.log('data: ', result.data);
     // обнуляем кол-во фильмов, что дает возможность отобразить верное кол-во страниц по запросу
-    paginationTui.reset(data.total_results);
+    // paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
   }
 };
 export async function filter(eventData) {
   movieApi.page = eventData.page;
-  const { data } = await movieApi.fetchMovieFilter();
-  galleryEl.innerHTML = makeMarkup(data.results);
+  let result;
+  movieApi.genre
+    ? (result = await movieApi.fetchMovieFilter())
+    : (result = await movieApi.fetchMovieFilter2());
 
-  console.log('page', eventData.page);
-  console.log('data.results', data.results);
+  galleryEl.innerHTML = makeMarkup(result.data.results);
+
+  console.log('data.results', result.data.results);
 }
 
 function renderGenreMenu(options) {
+  const arrayOfId = [];
   return options.map(option => {
+    arrayOfId.push(option.id);
+    // console.log(arrayOfId);
+    // movieApi.genre = arrayOfId.join(',');
+    // console.log(movieApi.genre);
+
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
 }
