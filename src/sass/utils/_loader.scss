@@ -1,0 +1,111 @@
+.loader__backdrop {
+    z-index: 100;
+    position: fixed;
+    // position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    // position: absolute;   
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    transition: transform linear;
+    border: 16px solid #F3F3F3;
+    border-top: 16px solid #FF6B01;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+//  root:{--size: 20px;
+//  --largeSize: 40px;
+//  --color: black;
+//  --speed: 1.5s;
+//  --padding: calc((var(--largeSize) - var(--size)) / -2);
+//  }
+// .loader__backdrop {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.2);
+// }
+// .loader{
+//     position: absolute;
+//     width: 120px;
+//     height: 120px;
+//     margin: 20px;
+//     top: 50%;
+//     left: 50%;
+    
+//     transform: translate(-50%, -50%);
+   
+//     // background-color: inherit;
+// }
+// .loader div {
+//     position: absolute;
+//     background: var(--color);
+//     width: var(--size);
+//     height: var(--size);
+//     border-radius: 50%;
+// }
+// .circle1 {
+//         top: 0;
+//         left: 50px;
+// }
+//         .circle2 {
+//         top: 15px;
+//         left: 85px;
+//     }
+//     .circle3{
+//         top: 50px;
+//         left: 100px;
+//     }
+//     .circle4{
+//         top: 85px;
+//         left: 85px;
+//     }
+//     .circle5{
+//         top: 100px;
+//         left: 50px;
+//     }
+//    .circle6{
+//         top: 85px;
+//         left: 15px;
+//     }
+//     .circle7{
+//         top: 50px;
+//         left: 0px;
+//     }
+//     .circle8{
+//         top: 15;
+//         left: 15px;
+//     }
+//     @keyframes inlarge1 {
+//         0%, 12.5, 100% {
+//             width: ;
+
+//         }
+//         6.25% {
+
+//         }
+//     }

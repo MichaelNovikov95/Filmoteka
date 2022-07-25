@@ -1,4 +1,4 @@
-import {} from './script/refs';
+import { } from './script/refs';
 import './script/gallery';
 import './script/cardMarkup';
 import './script/onOpenCard';
@@ -9,3 +9,5 @@ import './script/onCloseModal';
 import './script/scrollUp';
 import './script/localStorageKey';
 import './script/modalButton';
+import './script/loader'
+

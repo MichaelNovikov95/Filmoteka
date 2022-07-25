@@ -1,209 +1,202 @@
-.backdrop{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color:rgba(0, 0, 0, 0.2);;
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
 }
+
 .is-hidden {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
-.modal{
-    
-    position: relative;    
-    top: 50%;
-    left: 50%;
-    
-    transform: translate(-50%, -50%);
-    background-color: #FFFFFF;
-    @media screen and (min-width: 320px){
-        width: 280px;
-    }
-    @media screen and (min-width: 768px){
-        width: 704px;
-        height: 552px;
-    }
-    @media screen and (min-width: 1280px){
-        width: 806px;
-        height: 558px;
-     }
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  width: 280px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @media screen and (max-width: 767px) {
+    height: 100vh;
+    max-height: 940px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 806px;
+  }
 }
-.modal__container{
-    
-    padding-top: 48px;
-    padding-right: 20px;
-    padding-bottom: 48px;
-    padding-left: 20px;
-    // @media screen and (min-width: 320px){
-    //     display: flex;
-    //     flex-direction: column;
-    // }
-    @media screen and (min-width: 768px){
-        flex: none;
-        display: flex;
-        padding-top: 40px;
-        padding-right: 72px;
-        padding-bottom: 40px;
-        padding-left: 36px;
-    }
-    @media screen and (min-width: 1280px){
-        // padding-top: 40px;
-        padding-right: 12px;
-        padding-bottom: 40px;
-        padding-left: 12px;
-    }
+.modal-is-open {
+  overflow: hidden;
+}
+.modal__container {
+  padding-top: 48px;
+  padding-right: 20px;
+  padding-bottom: 48px;
+  padding-left: 20px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    padding-top: 40px;
+    padding-right: 72px;
+    padding-bottom: 40px;
+    padding-left: 36px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-right: 12px;
+    padding-bottom: 40px;
+    padding-left: 12px;
+  }
 }
 .image__place {
-    
-    background-color: inherit;
-    border-radius: 5px;
-    @media screen and (min-width: 320px){
-        width: 240px;
-        height: 357px;
-        
-    }
-    @media screen and (min-width: 768px){
-        width: 264px;
-        height: 373.55px;
-        
-    }
-    @media screen and (min-width: 1280px){
-        width: 375px;
-        height: 478px;
-    }
+  display: block;
+  background-color: inherit;
+  border-radius: 5px;
+  width: 240px;
+  height: 357px;
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 373px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 375px;
+    height: 478px;
+  }
 }
-.modal-poster{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 5px;
+.modal-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
 }
-.content__place{
-    // position: relative;
-    font-weight: 500;
-    margin-top: 20px;
-    @media screen and (min-width: 320px){
-        width: 240px;
-        margin-left: 0px;
-    }
-    @media screen and (min-width: 768px) {
-        margin-top: 0px;
-        width: 264px;
-        margin-left: 68px;
-    }
-    @media screen and (min-width: 1280px) {
-        width: 391px;
-        margin-left: 12px;
-    }
+.content__place {
+  // position: relative;
+  font-weight: 500;
+  margin-top: 20px;
+  width: 240px;
+  margin-left: 0px;
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+    width: 264px;
+    margin-left: 68px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 391px;
+    margin-left: 12px;
+  }
 }
-.modal__header{
-    font-size: 20px;
-    line-height: 1.15;
-    text-align: left;
-    vertical-align: top;
-    @media screen and (min-width: 1280px) {
-       font-size: 30px;
-        line-height: 1;
-    }
+.modal__header {
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: left;
+  vertical-align: top;
+  @media screen and (min-width: 1280px) {
+    font-size: 30px;
+    line-height: 1;
+  }
 }
-.details{
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    line-height: 1.14;
-    text-align: left;
-   }
-.details-head{
-    width: calc(50% - 5px);
-    margin-right: 10px;
-    font-style: medium;
-    // font-size: 12px;
-    color: #8C8C8C ;
+.details {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 1.14;
+  text-align: left;
+}
+.details-head {
+  width: calc(50% - 5px);
+  margin-right: 10px;
+  font-style: medium;
+  // font-size: 12px;
+  color: #8c8c8c;
 }
 .details-content {
-    color: #000000;
+  color: #000000;
 }
-.details-string:not(:last-child){
-    margin-bottom: 8px;
+.details-string:not(:last-child) {
+  margin-bottom: 8px;
 }
-.vote--modal{
-    display: inline-block;
-    width: 36px;
-    height: 16px;
-    padding-top: 2px;
-    padding-bottom: 1px;
-    border-radius: 5px;
-    align-items:inherit;
-    text-align: center;
-    color: #FFFFFF;
-    background-color: #FF6B01;
-    
+.vote--modal {
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  border-radius: 5px;
+  align-items: inherit;
+  text-align: center;
+  color: #ffffff;
+  background-color: #ff6b01;
 }
-.modal-annotation{
-    margin-top: 8px;
-    margin-bottom: 20px;
-    line-height: calc(20/12);
-    text-align: left;
+.modal-annotation {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  line-height: calc(20 / 12);
+  text-align: left;
 }
-.film-modal__button{
+.film-modal__button {
+  width: 110px;
+  height: 44px;
+  padding: 6px 27px 6px 27px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-weight: 500;
+  @media screen and (min-width: 320px) {
     width: 110px;
-    height: 44px;
-    padding: 6px 27px 6px 27px;
-    border: 1px solid #000000 ;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    font-weight: 500;
-    @media screen and (min-width: 320px){
-        width: 110px;
-        &:not(:last-child) {
-                margin-right: 15px;
-        }
+    &:not(:last-child) {
+      margin-right: 15px;
     }
-    @media screen and (min-width: 768px) {
-        width: 125px;
-        padding: 14px 9px 12px 9px;
-        &:not(:last-child) {
-                margin-right: 15px;
-            }
+  }
+  @media screen and (min-width: 768px) {
+    width: 125px;
+    padding: 14px 9px 12px 9px;
+    &:not(:last-child) {
+      margin-right: 15px;
     }
-    @media screen and (min-width: 1280px) {
-        width: 136px;
-        padding: 14px 10px 12px 10px;
-    }
-    &--active{
-        border: none;
-        background-color: #FF6B01;
-        color: #FFFFFF;
-    }
+  }
+  @media screen and (min-width: 1280px) {
+    width: 136px;
+    padding: 14px 10px 12px 10px;
+  }
+  &--active {
+    border: none;
+    background-color: #ff6b01;
+    color: #ffffff;
+  }
 }
-.button__place{
-    // position: absolute;
+.button__place {
+  // position: absolute;
 
-    display: flex;
-    justify-content: space-between;
-    @media screen and (min-width: 768px) {
-        justify-content: start;
-    }
+  display: flex;
+  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    justify-content: start;
+  }
 }
 // .close{
 //     width: 100%;
 //     height: 100%;
 // }
-.close__button{
-    position: absolute;
-    display: flex;
-    top: 16px;
-    right: 16px;
-    width: 14px;
-    height: 14px;
-    background-color: #FFFFFF;
-    border: none;
+.close__button {
+  position: absolute;
+  display: flex;
+  top: 16px;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  background-color: #ffffff;
+  border: none;
 }
-.close__icon{
-    position: absolute;
-    top: 0;
-    left: 0;
-    fill: #000000;
+.close__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: #000000;
 }
