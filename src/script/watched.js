@@ -64,12 +64,12 @@ function selectBTN(event) {
     return;
   }
   if (event.target.dataset.action === 'watched') {
-    startLibraryMarkup(arrIdMovieWathed);
+    startLibraryMarkup(getOnLocalStorage(localStorageKeyWatched));
     refs.btnGelleryWatchedEl.classList.add('active');
     refs.btnGelleryQueueEl.classList.remove('active');
   } else {
     event.target.dataset.action === 'queue';
-    startLibraryMarkup(arrIdMovieQueue);
+    startLibraryMarkup(getOnLocalStorage(localStorageKeyQueue));
     refs.btnGelleryQueueEl.classList.add('active');
     refs.btnGelleryWatchedEl.classList.remove('active');
   }

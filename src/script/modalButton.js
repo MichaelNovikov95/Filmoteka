@@ -55,14 +55,14 @@ function addToQueue(idMovie) {
 function removeOnQueue(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyQueue);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  delArr = newArrIdMovie.splice(idexDelId);
+  delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyQueue, newArrIdMovie);
 }
 
 function removeWatched(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyWatched);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  delArr = newArrIdMovie.splice(idexDelId);
+  delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyWatched, newArrIdMovie);
 }
 
