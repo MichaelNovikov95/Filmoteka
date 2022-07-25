@@ -1,6 +1,6 @@
 import { MovieApi } from './fetchFilms';
 import { movieCard } from './movieCard';
-
+import { loader } from './loader';
 export const backdrop = document.querySelector('.backdrop');
 export const modal = document.querySelector('.modal__container');
 const galleryEl = document.querySelector('.gallery');
@@ -8,6 +8,7 @@ const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
 
 const createMarkup = async id => {
+  loader.classList.remove('is-hidden');
   clearCard();
   movieApi.id = id;
   try {
@@ -15,12 +16,15 @@ const createMarkup = async id => {
     console.log(data);
     modal.insertAdjacentHTML('beforeend', movieCard(data));
     // ---------------------------------------------------------------------
+    
     closeModalFilmBtn.addEventListener('click', closeModal);
     // ---------------------------------------------------------------------
   } catch (err) {
     console.log(err);
   }
+  loader.classList.add('is-hidden');
 };
+
 const onGalleryContainerClick = e => {
   console.log(e.target.nodeName);
   e.preventDefault();
@@ -28,6 +32,7 @@ const onGalleryContainerClick = e => {
     return;
   }
   backdrop.classList.remove('is-hidden');
+  document.body.classList.add('.modal-is-open');
   createMarkup(e.target.id);
 };
 
@@ -40,6 +45,7 @@ galleryEl.addEventListener('click', onGalleryContainerClick);
 
 export function closeModal() {
   backdrop.classList.add('is-hidden');
+  document.body.classList.remove('.modal-is-open');
   modal.innerHTML = '';
   closeModalFilmBtn.removeEventListener('click', closeModal);
 }
