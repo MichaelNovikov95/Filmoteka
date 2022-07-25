@@ -49,7 +49,6 @@ const onSearchInput = async e => {
   try {
     if (movieApi.query === '') {
       alertNoEmptySearch();
-      console.log('i am here');
       galleryEl.innerHTML = '';
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
       return;

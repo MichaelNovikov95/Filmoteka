@@ -64,6 +64,7 @@ export class MovieApi {
         primary_release_year: this.year,
         with_genres: this.genre,
         sort_by: this.sort,
+        page: this.page,
       },
     });
   }
