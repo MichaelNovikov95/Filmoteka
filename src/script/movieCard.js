@@ -10,14 +10,14 @@ export const movieCard = ({
   overview,
 }) => {
   poster_path
-    ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
-    : (poster_path = '../images/header/search.svg');
-  // на 13 строке нужно поставить картинку заглушку
+  ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
+  : (poster_path =
+      'https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg');
   genres = genres.map(genre => genre.name).join(', ');
   popularity = parseFloat(popularity).toFixed(1);
   const titleUpperCase = title.toUpperCase();
   const originalTitleUpperCase = original_title.toUpperCase();
-  const voteAverageFixed =vote_average.toFixed(1)
+  const voteAverageFixed = vote_average.toFixed(1);
   return `
       <div class="image__place" id=${id}>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
