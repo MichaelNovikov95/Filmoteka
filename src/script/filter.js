@@ -18,19 +18,31 @@ const onFilterChoice = async e => {
   paginationTui.off('afterMove', popular);
   paginationTui.off('afterMove', search);
   paginationTui.off('afterMove', microphon);
-  paginationTui.movePageTo(1);
+  paginationTui.off('afterMove', filter);
+  // paginationTui.movePageTo(1);
+
   searchInputEl.value = '';
   // console.log(e.target.value);
   movieApi.genre = genreChoice.value;
   movieApi.year = yearChoice.value;
   movieApi.sort = sortChoice.value;
+  // paginationTui.reset();
+
   try {
     const { data } = await movieApi.fetchMovieFilter();
+
     if (data.total_pages < 2) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
     }
+    if (data.results.length === 0) {
+      refs.paginationWrap.classList.add('tui-pagination', 'hidden');
+      console.log('no results');
+    }
+
     galleryEl.innerHTML = makeMarkup(data.results);
     paginationTui.on('afterMove', filter);
+
+    // обнуляем кол-во фильмов, что дает возможность отобразить верное кол-во страниц по запросу
     paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
@@ -40,10 +52,12 @@ export async function filter(eventData) {
   movieApi.page = eventData.page;
   const { data } = await movieApi.fetchMovieFilter();
   galleryEl.innerHTML = makeMarkup(data.results);
+
+  console.log('page', eventData.page);
+  console.log('data.results', data.results);
 }
 
 function renderGenreMenu(options) {
-  // console.log(options);
   return options.map(option => {
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
