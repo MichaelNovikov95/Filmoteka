@@ -56,7 +56,6 @@ export class MovieApi {
     });
   }
   fetchMovieFilterWithGenres() {
-    console.log('this.genre: ', this.genre);
     return axios.get(`${this.#FILTER_URL}`, {
       params: {
         api_key: this.#API_KEY,
@@ -69,7 +68,6 @@ export class MovieApi {
     });
   }
   fetchMovieFilterWithoutGenres() {
-    console.log('this.genre: ', this.genre);
     return axios.get(`${this.#FILTER_URL}`, {
       params: {
         api_key: this.#API_KEY,
