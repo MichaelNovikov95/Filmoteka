@@ -25,10 +25,13 @@ export function makeMarkup(cards) {
         };
         // const finalRating = Math.round10(vote_average, -2);
         const finalRating = vote_average.toString().padEnd(3, '.0').slice(0, 3);
-        // console.log(finalRating);
+        poster_path
+          ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
+          : (poster_path =
+              'https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg');
         return (cards = `
             <li class="movie-card gallery_item" data-id="${id}">
-              <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${choseTitle}" loading="lazy" class="movie-card__img" id="${id}"/>
+              <img src="${poster_path}" alt="${choseTitle}" loading="lazy" class="movie-card__img" id="${id}"/>
 
               <div class="movie-card__info">
                 <div class="movie-card__info-name-wraper"

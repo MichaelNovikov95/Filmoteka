@@ -7,4 +7,7 @@ import './script/filter';
 import './script/microphone';
 import './script/onCloseModal';
 import './script/scrollUp';
+import './script/localStorageKey';
+import './script/modalButton';
 import './script/loader'
+

@@ -1,19 +1,24 @@
-.loader__backdrop{
+.loader__backdrop {
+    z-index: 100;
     position: fixed;
+    // position: relative;
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    align-items: center;
+    justify-content: center;
 }
+
 .loader {
-    position: absolute;    
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-100%, -100%);
-
-    border: 16px solid #f3f3f3;   
-    border-top: 16px solid #FF6B01;    
+    // position: absolute;   
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    transition: transform linear;
+    border: 16px solid #F3F3F3;
+    border-top: 16px solid #FF6B01;
     border-radius: 50%;
     width: 120px;
     height: 120px;
