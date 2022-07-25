@@ -3,6 +3,15 @@ import { movieCard } from './movieCard';
 import { refs } from './refs';
 // import { selectBTNmodal } from './modalButton';
 import { loader } from './loader';
+import {
+  saveOnLocalStorag,
+  getOnLocalStorage,
+  removeOnLocalStorage,
+} from './localStorage';
+import {
+  localStorageKeyQueue,
+  localStorageKeyWatched,
+} from './localStorageKey';
 
 export const backdrop = document.querySelector('.backdrop');
 export const modal = document.querySelector('.modal__container');
@@ -10,7 +19,13 @@ const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
 
-// refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
+if (
+  !getOnLocalStorage(localStorageKeyQueue) &&
+  !getOnLocalStorage(localStorageKeyWatched)
+) {
+  saveOnLocalStorag(localStorageKeyQueue, []);
+  saveOnLocalStorag(localStorageKeyWatched, []);
+}
 
 const createMarkup = async id => {
   loader.classList.remove('is-hidden');
@@ -30,7 +45,6 @@ const createMarkup = async id => {
   }
   loader.classList.add('is-hidden');
 };
-
 
 const onGalleryContainerClick = e => {
   console.log(e.target.nodeName);
