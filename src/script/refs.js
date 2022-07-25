@@ -4,6 +4,7 @@ export const refs = {
   galleryEl: document.querySelector('.gallery'),
   btnGelleryQueueEl: document.querySelector('[data-action="queue"]'),
   btnGelleryWatchedEl: document.querySelector('[data-action="watched"]'),
+  modalBtnParentEl: document.querySelector('.js-btnElement'),
 };
 export default {
   container: document.getElementById('pagination'),

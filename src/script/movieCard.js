@@ -1,3 +1,13 @@
+import {
+  checkLocalStorageWatched,
+  checkLocalStorageQueue,
+} from './modalButton';
+
+import {
+  localStorageKeyQueue,
+  localStorageKeyWatched,
+} from './localStorageKey';
+
 export const movieCard = ({
   id,
   title,
@@ -17,7 +27,7 @@ export const movieCard = ({
   popularity = parseFloat(popularity).toFixed(1);
   const titleUpperCase = title.toUpperCase();
   const originalTitleUpperCase = original_title.toUpperCase();
-  const voteAverageFixed =vote_average.toFixed(1)
+  const voteAverageFixed = vote_average.toFixed(1);
   return `
       <div class="image__place" id=${id}>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
@@ -43,7 +53,11 @@ export const movieCard = ({
               ${overview}
           </p>
           <ul class="button__place">
-              <button type="button" class="film-modal__button film-modal__button--active">ADD TO WATCHED</button>
-              <button type="button" class="film-modal__button">ADD TO QUEUE</button>
+          <button type="button" class="film-modal__button film-modal__button--active " data-id="${id}" data-action="queueModal">${checkLocalStorageQueue(
+    id
+  )}</button>
+           <button type="button" class="film-modal__button " data-action="watchedModal">${checkLocalStorageWatched(
+             id
+           )}</button>
           </ul>`;
 };
