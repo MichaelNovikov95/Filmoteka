@@ -18,6 +18,8 @@ import {
   localStorageKeyWatched,
 } from './localStorageKey';
 
+console.log(window.location.href);
+
 refs.btnHeaderEl.addEventListener('click', selectBTN);
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
 
