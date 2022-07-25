@@ -1,15 +1,19 @@
-type = 'text/javascript';
-$(document).ready(function () {
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-      $('.scrollup').fadeIn();
-    } else {
-      $('.scrollup').fadeOut();
-    }
-  });
-
-  $('.scrollup').click(function () {
-    $('html, body').animate({ scrollTop: 0 }, 600);
-    return false;
-  });
-});
+const btnGoTop = document.querySelector('.btn-move-up');
+function btnGoTopStatus() {
+  const cardSizeAndCoordinates = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+  const { height: cardHeight } = cardSizeAndCoordinates;
+  if (window.pageYOffset > cardHeight) {
+    btnGoTop.classList.remove('is-hidden');
+  } else {
+    btnGoTop.classList.add('is-hidden');
+  }
+}
+function goTop() {
+  if (window.pageYOffset > 0) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+window.addEventListener('scroll', btnGoTopStatus);
+btnGoTop.addEventListener('click', goTop);
