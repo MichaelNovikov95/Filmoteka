@@ -20,65 +20,41 @@ const onFilterChoice = async e => {
   paginationTui.off('afterMove', microphon);
   paginationTui.off('afterMove', filter);
 
-  // paginationTui.movePageTo(1);
-
   searchInputEl.value = '';
-  console.log('e.target.value: ', e.target.value);
-  // console.log('target: ', e.target);
-  console.log('name: ', e.target.name);
-  // console.log('genreChoice.value:', genreChoice.value);
   movieApi[e.target.name] = e.target.value;
-  // movieApi.genre = genreChoice.value;
-  // movieApi.year = yearChoice.value;
-  // movieApi.sort = sortChoice.value;
 
   try {
-    let result;
-    console.log(result);
+    let promise;
+    movieApi.page = 1;
     movieApi.genre
-      ? (result = await movieApi.fetchMovieFilter())
-      : (result = await movieApi.fetchMovieFilter2());
-    console.log('result.data: ', result.data);
+      ? (promise = await movieApi.fetchMovieFilterWithGenres())
+      : (promise = await movieApi.fetchMovieFilterWithoutGenres());
 
-    if (result.data.total_pages < 2) {
+    if (promise.data.total_pages < 2) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
     }
-    if (result.data.results.length === 0) {
+    if (promise.data.results.length === 0) {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
-      console.log('no results');
     }
-    paginationStart(result.data);
-
-    galleryEl.innerHTML = makeMarkup(result.data.results);
+    paginationStart(promise.data);
+    galleryEl.innerHTML = makeMarkup(promise.data.results);
     paginationTui.on('afterMove', filter);
-    console.log('data.results: ', result.data.results);
-    console.log('data: ', result.data);
-    // обнуляем кол-во фильмов, что дает возможность отобразить верное кол-во страниц по запросу
-    // paginationTui.reset(data.total_results);
   } catch (err) {
     galleryEl.innerHTML = '';
   }
 };
 export async function filter(eventData) {
   movieApi.page = eventData.page;
-  let result;
+  let promise;
   movieApi.genre
-    ? (result = await movieApi.fetchMovieFilter())
-    : (result = await movieApi.fetchMovieFilter2());
+    ? (promise = await movieApi.fetchMovieFilterWithGenres())
+    : (promise = await movieApi.fetchMovieFilterWithoutGenres());
 
-  galleryEl.innerHTML = makeMarkup(result.data.results);
-
-  console.log('data.results', result.data.results);
+  galleryEl.innerHTML = makeMarkup(promise.data.results);
 }
 
 function renderGenreMenu(options) {
-  const arrayOfId = [];
   return options.map(option => {
-    arrayOfId.push(option.id);
-    // console.log(arrayOfId);
-    // movieApi.genre = arrayOfId.join(',');
-    // console.log(movieApi.genre);
-
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
 }
