@@ -22,7 +22,6 @@ refs.btnHeaderEl.addEventListener('click', selectBTN);
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
 
 const libraryMovieApi = new MovieApi();
-
 const arrIdMovieQueue = getOnLocalStorage(localStorageKeyQueue) || [];
 const arrIdMovieWathed = getOnLocalStorage(localStorageKeyWatched) || [];
 
