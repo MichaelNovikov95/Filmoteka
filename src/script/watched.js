@@ -18,6 +18,7 @@ import {
   localStorageKeyWatched,
 } from './localStorageKey';
 import { test } from './refs';
+
 console.log(window.location.href);
 
 refs.btnHeaderEl.addEventListener('click', selectBTN);
@@ -63,6 +64,9 @@ function selectBTN(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
+  test = event.target.dataset.action;
+  console.log('event', event.target.dataset.action);
+  console.log('const test: ', test);
   if (event.target.dataset.action === 'watched') {
     startLibraryMarkup(getOnLocalStorage(localStorageKeyWatched));
     refs.btnGelleryWatchedEl.classList.add('active');

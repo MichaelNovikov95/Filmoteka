@@ -56,7 +56,6 @@ export class MovieApi {
     });
   }
   fetchMovieFilterWithGenres() {
-    console.log('this.genre: ', this.genre);
     return axios.get(`${this.#FILTER_URL}`, {
       params: {
         api_key: this.#API_KEY,
@@ -69,7 +68,6 @@ export class MovieApi {
     });
   }
   fetchMovieFilterWithoutGenres() {
-    console.log('this.genre: ', this.genre);
     return axios.get(`${this.#FILTER_URL}`, {
       params: {
         api_key: this.#API_KEY,
@@ -77,6 +75,15 @@ export class MovieApi {
         primary_release_year: this.year,
         sort_by: this.sort,
         page: this.page,
+      },
+    });
+  }
+  fetchMovieByIdForTrailer() {
+    return axios.get(`${this.#ID_URL}${this.id}/videos`, {
+      params: {
+        api_key: this.#API_KEY,
+        page: this.page,
+        language: 'en-US',
       },
     });
   }

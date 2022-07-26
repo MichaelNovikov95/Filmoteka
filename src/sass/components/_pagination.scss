@@ -52,19 +52,25 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0em;
   text-decoration: none;
   color: #000000;
-  background-color: #ffff;
+  background-color: transparent;
   border: none;
   border-radius: 4px;
 }
 
 .tui-pagination a.tui-page-btn:hover {
-  background-color: #f7f7f7;
+  background-color: #ff6b087e;
+}
+a.tui-page-btn.tui-prev-is-ellip.tui-first-child:hover {
+  background-color: #ff6b087e;
+}
+a.tui-page-btn.tui-next-is-ellip.tui-last-child:hover {
+  background-color: #ff6b087e;
 }
 
 .tui-pagination .tui-is-selected,
@@ -248,7 +254,7 @@ a.tui-page-btn.tui-next-is-ellip.tui-last-child {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #f7f7f7;
+  background-color: transparent;
   border: none;
   border-radius: 4px;
 }
