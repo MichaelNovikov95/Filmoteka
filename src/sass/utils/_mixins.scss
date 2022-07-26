@@ -4,3 +4,29 @@
   line-height: $lh;
   letter-spacing: $ls;
 }
+@mixin retina {
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    @content;
+    background-size: cover;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1280px) {
+    @content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

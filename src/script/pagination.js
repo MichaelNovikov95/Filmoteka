@@ -12,7 +12,6 @@ export function paginationStart(data) {
     data.total_results = 10000;
   }
   options.totalItems = data.total_results;
-  console.log('options:', options);
   paginationTui = new Pagination('pagination', options);
   return paginationTui;
 }

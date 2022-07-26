@@ -2,177 +2,52 @@
   @extend %container;
   @include font(null, 500, 1.14, null);
   padding-top: 40px;
-
-  padding-bottom: 92px;
+  padding-bottom: 22px;
   background: radial-gradient(
     circle,
     rgba(208, 4, 4, 1) 7%,
     rgba(5, 5, 5, 1) 76%
   );
-
-  background: url(/src/images/header/header-background-mob1x.png);
+  background-image: url(/src/images/header/header-background-mob1x.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-repeat: no-repeat;
-  @media screen and (min-device-pixel-ratio: 2),
-    screen and (min-resolution: 192dpi),
-    screen and (min-resolution: 2dppx) {
-    background-image: url(/src/images/header/header-background-mob2x.png) cover;
+  @include retina {
+    background-image: url(/src/images/header/header-background-mob2x.png);
   }
-  // &__text {
-  //   padding-top: 16px;
-  // }
+
   &__menu-container {
     display: flex;
   }
+  @include tablet {
+    background-image: url(/src/images/header/header-background-tablet1x.png);
+    padding-bottom: 40px;
 
-  .header-search {
-    max-width: 280px;
-    margin-top: 57px;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding-bottom: 80px;
-    background: radial-gradient(
-      circle,
-      rgba(208, 4, 4, 1) 7%,
-      rgba(5, 5, 5, 1) 76%
-    );
-
-    background: url(/src/images/header/header-background-tablet1x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url(/src/images/header/header-background-tablet2x.png)
-        cover;
-    }
-    // &__text {
-    //   padding-top: 20px;
-    // }
-    .header-search {
-      max-width: 336px;
-      margin-top: 49px;
-    }
-    .logo__link {
-      display: block;
-      @include font(30px, 500, 1.17, null);
-    }
-    //2 buttons from library page
-    .button {
-      padding: 12px 0px;
-      margin-top: 51px;
-      &:not(:last-child) {
-        margin-right: 32px;
-      }
+    @include retina {
+      background-image: url(/src/images/header/header-background-tablet2x.png);
     }
   }
-  @media screen and (min-width: 1280px) {
-    background: radial-gradient(
-      circle,
-      rgba(208, 4, 4, 1) 7%,
-      rgba(5, 5, 5, 1) 76%
-    );
+  @include desktop {
     background: url(/src/images/header/header-background-desktop1x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: url(/src/images/header/header-background-desktop2x.png)
-        cover;
-    }
-    .header-search {
-      max-width: 394px;
-      margin-top: 50px;
-    }
-    //2 buttons from library page
-    .button {
-      padding: 11px 0px;
-      &:not(:last-child) {
-        margin-right: 16px;
-      }
+    @include retina {
+      background-image: url(/src/images/header/header-background-desktop2x.png);
     }
   }
 }
-
 .logo {
   color: var(--header-text-color);
-  display: flex;
-  align-items: center;
+  @extend %flex-align-centr;
 
   &__link {
     display: none;
     margin-left: 9px;
   }
-}
 
-.header-search {
-  position: relative;
-  margin: 0 auto;
-
-  &__input {
-    width: 100%;
-    border: 0;
-    @include font(14, 400, 1.14, null);
-    color: var(--header-text-color);
-    border-bottom: 1px solid var(--header-text-color);
-    background-color: transparent;
-    outline: 0;
-    &::placeholder {
-      color: var(--header-text-color);
-      @include font(14, 400, 1.14, null);
+  @include tablet {
+    &__link {
+      display: block;
+      @include font(30px, 500, 1.17, null);
     }
-  }
-  &__icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: transparent;
-    border: transparent;
-  }
-  &__label {
-    position: relative;
-  }
-  &__btn-mic {
-    position: absolute;
-    left: -30px;
-    background-color: transparent;
-    border: transparent;
-    padding: 0;
-    color: var(--header-text-color);
-    transition: transform 500ms linear;
-  }
-  &__icon-mic {
-    fill: currentColor;
-  }
-
-  &__icon-record {
-    position: absolute;
-    left: -60px;
-    top: 2px;
-    fill: red;
-    background-color: transparent;
-    border: transparent;
-  }
-  &__icon-record.is-hidden {
-    display: none;
-  }
-}
-.-active {
-  animation: fire-color 700ms linear infinite alternate;
-}
-@keyframes fire-color {
-  0% {
-    color: var(--header-text-color);
-  }
-  100% {
-    transform: scale(1.7);
-    color: var(--button-activeHover-color);
   }
 }
 .nav-menu {
@@ -190,6 +65,157 @@
 a {
   color: var(--header-text-color);
 }
+.page-header .header-search {
+  @extend %flex-align-centr;
+  position: relative;
+  width: 280px;
+  margin: 57px auto 0 auto;
+  @include tablet {
+    width: 336px;
+    margin-top: 49px;
+  }
+  @include desktop {
+    width: 394px;
+    margin-top: 50px;
+  }
+
+  &__input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid var(--header-text-color);
+    background-color: transparent;
+    color: var(--header-text-color);
+    @include font(14, 400, 1.14, null);
+    &::placeholder {
+      color: var(--header-text-color);
+      @include font(14, 400, 1.14, null);
+    }
+  }
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    background-color: transparent;
+    border: transparent;
+  }
+
+  &__btn-mic {
+    margin-right: 8px;
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+    color: var(--header-text-color);
+    transition: transform 500ms linear;
+  }
+  &__icon-mic {
+    fill: currentColor;
+  }
+
+  &__icon-record {
+    margin-right: 8px;
+    fill: red;
+    background-color: transparent;
+    border: transparent;
+  }
+  &__icon-record.visually-hidden {
+    opacity: 0;
+  }
+}
+label {
+  position: relative;
+  width: 100%;
+}
+.-active {
+  animation: fire-color 700ms linear infinite alternate;
+}
+@keyframes fire-color {
+  0% {
+    color: var(--header-text-color);
+  }
+  100% {
+    transform: scale(1.7);
+    color: var(--button-activeHover-color);
+  }
+}
+
+.filter {
+  width: 180px;
+  margin: 30px auto 0 auto;
+
+  &__title {
+    margin-left: 30px;
+    @include font(14, 500, 1.5, 0.02em);
+    color: var(--header-text-color);
+    text-align: center;
+    margin-top: 20px;
+  }
+  &__form {
+    margin-left: 30px;
+    @media screen and (min-width: 768px) {
+      margin-left: 0;
+      display: flex;
+    }
+  }
+  @include tablet {
+    width: 450px;
+    &__title {
+      margin-left: 0px;
+    }
+  }
+  &__input {
+    // width: 180px;
+    // width: calc((100% - 40px) / 3);
+    @include font(12, 500, 1.15, 0.02em);
+    text-align: center;
+    display: block;
+    color: #444;
+    padding: 5px 30px 3px 20px;
+    width: 150px;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--underline-title-colorNotiflix-failure-color);
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--header-text-color);
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+      linear-gradient(to bottom, var(--header-text-color) 0%, #d83737 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right 5px top 58%, 0;
+    background-size: 14px auto, 100%;
+    @media screen and (max-width: 767px) {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+    @media screen and (min-width: 768px) {
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+
+    &__input::-ms-expand {
+      display: none;
+    }
+    &__input:hover {
+      border-color: rgb(111, 111, 111);
+    }
+    &__input:focus {
+      border-color: #aaa;
+      box-shadow: 0 0 1px 1px rgb(231, 3, 3);
+      box-shadow: 0 0 0 3px -moz-mac-focusring;
+      color: #222;
+      outline: none;
+    }
+    &__input option {
+      font-weight: 500;
+    }
+  }
+}
+
 .current-page-red::after {
   position: absolute;
   bottom: -3px;
@@ -210,10 +236,11 @@ a {
   height: 3px;
   background-color: var(--description-accent-color);
 }
+
+//2 buttons from library page
 .page-header__buttons {
   @extend %flexCentered;
 }
-
 .button {
   width: 130px;
   padding: 12px 0px;
@@ -235,140 +262,53 @@ a {
   &:not(:last-child) {
     margin-right: 16px;
   }
+  @include tablet {
+    & {
+      padding: 12px 0px;
+      margin-top: 51px;
+    }
+    &:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
+  @include desktop {
+    & {
+      padding: 11px 0px;
+    }
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
 }
 .active {
   background-color: var(--button-activeHover-color);
   box-shadow: 0px 8px 43px var(--button-activeHover-color);
-
   border: none;
 }
 
 .page-header--library-container {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(/src/images/headerLibrary/headerLibrary-background-mob1x.png);
-
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  @media screen and (min-device-pixel-ratio: 2),
-    screen and (min-resolution: 192dpi),
-    screen and (min-resolution: 2dppx) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(/src/images/headerLibrary/headerLibrary-background-mob2x.png), cover;
+  @include retina {
+    background-image: url(/src/images/headerLibrary/headerLibrary-background-mob2x.png);
   }
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     padding-bottom: 80px;
-
-    background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(/src/images/headerLibrary/headerLibrary-background-tablet1x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    @media screen and (min-device-pixel-ratio: 2),
-      screen and (min-resolution: 192dpi),
-      screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
-        ),
-        url(/src/images/headerLibrary/headerLibrary-background-tablet2x.png),
-        cover;
-    }
-    @media screen and (min-width: 1280px) {
-      background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(/src/images/headerLibrary/headerLibrary-background-desktop1x.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      @media screen and (min-device-pixel-ratio: 2),
-        screen and (min-resolution: 192dpi),
-        screen and (min-resolution: 2dppx) {
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.56),
-            rgba(0, 0, 0, 0.56)
-          ),
-          url(/src/images/headerLibrary/headerLibrary-background-desktop2x.png),
-          cover;
-      }
+    @include retina {
+      background-image: url(/src/images/headerLibrary/headerLibrary-background-tablet2x.png);
     }
   }
-}
-
-.filter {
-  margin-top: 30px;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  &__title {
-    @include font(14, 500, 1.5, 0.02em);
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 10px;
-    @media screen and (min-width: 768px) {
-      margin-right: 30px;
-      margin-bottom: 0;
+  @include desktop {
+    background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/src/images/headerLibrary/headerLibrary-background-desktop1x.png);
+    @include retina {
+      background-image: url(/src/images/headerLibrary/headerLibrary-background-desktop2x.png);
     }
-  }
-  &__form {
-    @media screen and (max-width: 767px) {
-      margin: 0 auto;
-      width: 180px;
-    }
-    @media screen and (min-width: 768px) {
-      display: flex;
-    }
-  }
-}
-.filter__input {
-  @include font(12, 500, 1.15, 0.02em);
-  text-align: center;
-  display: block;
-  color: #444;
-  padding: 5px 30px 3px 20px;
-  width: 150px;
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid #aaa;
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-  border-radius: 6px;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-    linear-gradient(to bottom, #ffffff 0%, #ababab 100%);
-  background-repeat: no-repeat, repeat;
-  background-position: right 5px top 58%, 0;
-  background-size: 14px auto, 100%;
-  @media screen and (max-width: 767px) {
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
-  }
-  @media screen and (min-width: 768px) {
-    &:not(:last-child) {
-      margin-right: 30px;
-    }
-  }
-
-  &__input::-ms-expand {
-    display: none;
-  }
-  &__input:hover {
-    border-color: rgb(111, 111, 111);
-  }
-  &__input:focus {
-    border-color: #aaa;
-    box-shadow: 0 0 1px 1px rgb(231, 3, 3);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
-    outline: none;
-  }
-  &__input option {
-    font-weight: 500;
   }
 }

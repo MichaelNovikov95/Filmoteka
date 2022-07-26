@@ -19,3 +19,7 @@ export function alertNoDataGenresLocalStrg() {
     'Sorry, search result not successful. Local Storage has problem'
   );
 }
+
+export function alertNoTrailer() {
+  Notify.failure('Sorry, we can not find trailer for this movie');
+}
