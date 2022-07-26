@@ -13,5 +13,3 @@ import './script/loader';
 import './script/auth-modal';
 import './script/signup-modal';
 import './script/signin-modal';
-
-
