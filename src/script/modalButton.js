@@ -3,7 +3,7 @@ import {
   getOnLocalStorage,
   removeOnLocalStorage,
 } from './localStorage';
-import { refs } from './refs';
+import { refs, test } from './refs';
 import {
   localStorageKeyQueue,
   localStorageKeyWatched,
@@ -11,15 +11,17 @@ import {
 import { makeMarkup } from './cardMarkup';
 import { MovieApi } from './fetchFilms';
 // import { startLibraryMarkup } from './watched';
-
 // console.log(localStorageKeyQueue);
-// const libraryMovieApi = new MovieApi();
-refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
 
+const libraryMovieApi = new MovieApi();
+refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
+console.log(window.location.pathname);
+const crutch = window.location.pathname;
 export function selectBTNmodal(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
+
   if (event.target.dataset.action === 'watchedModal') {
     const id = Number(event.target.previousElementSibling.dataset.id);
     event.target.classList.add('film-modal__button--active');
@@ -27,8 +29,14 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    // const base = getOnLocalStorage(localStorageKeyWatched);
-    // startLibraryMarkup(base);
+    console.log(
+      crutch !== '/index.html' && event.target.dataset.action === 'watchedModal'
+    );
+    if (crutch !== '/index.html' && test === 'watched') {
+      console.log(crutch);
+      const base = getOnLocalStorage(localStorageKeyWatched);
+      startLibraryMarkup(base);
+    }
   } else {
     event.target.dataset.action === 'queueModal';
     const id = Number(event.target.dataset.id);
@@ -37,35 +45,35 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdQueueLocalStorage(id, event);
-    // const base = getOnLocalStorage(localStorageKeyQueue);
-    // startLibraryMarkup(base);
+    console.log(
+      crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
+    );
+    if (crutch !== '/index.html' && test === 'queue') {
+      const base = getOnLocalStorage(localStorageKeyQueue);
+      startLibraryMarkup(base);
+    }
   }
 }
-
 function addToWatched(idMovie) {
   const newArrIdMovie = [...getOnLocalStorage(localStorageKeyWatched), idMovie];
   saveOnLocalStorag(localStorageKeyWatched, newArrIdMovie);
 }
-
 function addToQueue(idMovie) {
   const newArrIdMovie = [...getOnLocalStorage(localStorageKeyQueue), idMovie];
   saveOnLocalStorag(localStorageKeyQueue, newArrIdMovie);
 }
-
 function removeOnQueue(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyQueue);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
   delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyQueue, newArrIdMovie);
 }
-
 function removeWatched(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyWatched);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
   delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyWatched, newArrIdMovie);
 }
-
 function checkLocalStorageWatched(id) {
   const checkStorage = getOnLocalStorage(localStorageKeyWatched) || [];
   if (!checkStorage.includes(id)) {
@@ -73,7 +81,6 @@ function checkLocalStorageWatched(id) {
   }
   return `REMOVE FROM WATCHED`;
 }
-
 function checkLocalStorageQueue(id) {
   const checkStorage = getOnLocalStorage(localStorageKeyQueue) || [];
   if (!checkStorage.includes(id)) {
@@ -81,7 +88,6 @@ function checkLocalStorageQueue(id) {
   }
   return `REMOVE FROM QUEUE`;
 }
-
 function addRemovIdQueueLocalStorage(id, event) {
   if (event.target.textContent === 'ADD TO QUEUE') {
     addToQueue(id);
@@ -92,7 +98,6 @@ function addRemovIdQueueLocalStorage(id, event) {
     return (event.target.textContent = 'ADD TO QUEUE');
   }
 }
-
 function addRemovIdWatdhedLocalStorage(id, event) {
   if (event.target.textContent === 'ADD TO WATCHED') {
     addToWatched(id);
@@ -103,29 +108,26 @@ function addRemovIdWatdhedLocalStorage(id, event) {
     return (event.target.textContent = 'ADD TO WATCHED');
   }
 }
-
-// async function startLibraryMarkup(localStorageBase) {
-//   try {
-//     const objQueue = await fetchCardsLibrary(localStorageBase);
-//     const norm1 = objQueue.map(card => card.data);
-//     const norm2 = norm1.map(item => item.genres.map(genre => genre.id || []));
-//     const finalcards = norm1.map(
-//       (item, index) => (item.genre_ids = norm2[index])
-//     );
-//     refs.galleryEl.innerHTML = makeMarkup(norm1);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// async function fetchCardsLibrary(arr) {
-//   const arrayOfPromises = arr.map(async id => {
-//     libraryMovieApi.id = id;
-//     const response = await libraryMovieApi.fetchMovieById();
-//     return response;
-//   });
-//   const cardMovieLibrary = await Promise.all(arrayOfPromises);
-//   return cardMovieLibrary;
-// }
-
+async function startLibraryMarkup(localStorageBase) {
+  try {
+    const objQueue = await fetchCardsLibrary(localStorageBase);
+    const norm1 = objQueue.map(card => card.data);
+    const norm2 = norm1.map(item => item.genres.map(genre => genre.id || []));
+    const finalcards = norm1.map(
+      (item, index) => (item.genre_ids = norm2[index])
+    );
+    refs.galleryEl.innerHTML = makeMarkup(norm1);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+async function fetchCardsLibrary(arr) {
+  const arrayOfPromises = arr.map(async id => {
+    libraryMovieApi.id = id;
+    const response = await libraryMovieApi.fetchMovieById();
+    return response;
+  });
+  const cardMovieLibrary = await Promise.all(arrayOfPromises);
+  return cardMovieLibrary;
+}
 export { checkLocalStorageWatched, checkLocalStorageQueue };

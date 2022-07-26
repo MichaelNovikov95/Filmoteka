@@ -20,9 +20,8 @@ export const movieCard = ({
   overview,
 }) => {
   poster_path
-  ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
-  : (poster_path =
-      'https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg');
+    ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
+    : (poster_path = `https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg`);
   genres = genres.map(genre => genre.name).join(', ');
   popularity = parseFloat(popularity).toFixed(1);
   const titleUpperCase = title.toUpperCase();
@@ -30,6 +29,8 @@ export const movieCard = ({
   const voteAverageFixed = vote_average.toFixed(1);
   return `
       <div class="image__place" id=${id}>
+      <button type="button" class="button__trailer js-trailer">
+      </button>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
       </div>
       <div class="content__place">
