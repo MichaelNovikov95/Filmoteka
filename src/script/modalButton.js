@@ -14,6 +14,7 @@ import { testEvent1 } from './watched';
 const movieApi = new MovieApi();
 refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
 const crutch = window.location.pathname;
+
 function selectBTNmodal(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
@@ -25,6 +26,7 @@ function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
+
     if (crutch !== '/index.html' && testEvent1 === 'watched') {
       const base = getOnLocalStorage(localStorageKeyWatched);
       startLibraryMarkup(base);
@@ -37,6 +39,7 @@ function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdQueueLocalStorage(id, event);
+
     if (crutch !== '/index.html' && testEvent1 === 'queue') {
       const base = getOnLocalStorage(localStorageKeyQueue);
       startLibraryMarkup(base);

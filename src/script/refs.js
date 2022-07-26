@@ -10,5 +10,6 @@ export default {
   container: document.getElementById('pagination'),
   paginationWrap: document.querySelector('.wraper'),
   btnGoTop: document.querySelector('.btn-move-up'),
+  toggleTheme: document.querySelector('.toggle-theme'),
 };
 // export let testEvent = 'queue';
