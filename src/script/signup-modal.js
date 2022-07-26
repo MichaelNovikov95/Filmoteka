@@ -1,16 +1,14 @@
 const refs = {
   openModalBtn: document.querySelector('[data-signup-open]'),
-  closeModalBtn: document.querySelector('[data-signup-close]'),
+  crossBtn: document.querySelector('.close-auth-btn'),
   modal: document.querySelector('[data-signup-modal]'),
 };
 
 refs.openModalBtn.addEventListener('click', openModal);
-// refs.closeModalBtn.addEventListener('click', closeSignupModal);
+refs.crossBtn.addEventListener('click', closeSignupModal);
 
 function closeSignupModalOnAreaClick(e) {
-  if (e.target.classList.contains('backdrop')) {
-    closeSignupModal();
-  }
+  closeSignupModal();
 }
 
 function closeModalOnEsc(e) {
