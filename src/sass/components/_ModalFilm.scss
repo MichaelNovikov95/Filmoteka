@@ -32,9 +32,9 @@
     width: 806px;
   }
 }
-.modal-is-open {
-  overflow: hidden;
-}
+// .modal-is-open {
+//   overflow: hidden;
+// }
 .modal__container {
   padding-top: 48px;
   padding-right: 20px;
@@ -143,7 +143,9 @@
 .film-modal__button {
   width: 110px;
   height: 44px;
-  padding: 6px 27px 6px 27px;
+  padding:  27px 27px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #000000;
   border-radius: 5px;
   background-color: #ffffff;
@@ -156,14 +158,14 @@
   }
   @media screen and (min-width: 768px) {
     width: 125px;
-    padding: 14px 9px 12px 9px;
+    padding:  9px  9px;
     &:not(:last-child) {
       margin-right: 15px;
     }
   }
   @media screen and (min-width: 1280px) {
     width: 136px;
-    padding: 14px 10px 12px 10px;
+    padding:  10px  10px;
   }
   &--active {
     border: none;

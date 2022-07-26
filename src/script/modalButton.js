@@ -22,25 +22,23 @@ export function selectBTNmodal(event) {
   }
   if (event.target.dataset.action === 'watchedModal') {
     const id = Number(event.target.previousElementSibling.dataset.id);
-    console.log(id);
     event.target.classList.add('film-modal__button--active');
     event.target.previousElementSibling.classList.remove(
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    const base = getOnLocalStorage(localStorageKeyWatched);
-    startLibraryMarkup(base);
+    // const base = getOnLocalStorage(localStorageKeyWatched);
+    // startLibraryMarkup(base);
   } else {
     event.target.dataset.action === 'queueModal';
     const id = Number(event.target.dataset.id);
-    console.log(id);
     event.target.classList.add('film-modal__button--active');
     event.target.nextElementSibling.classList.remove(
       'film-modal__button--active'
     );
     addRemovIdQueueLocalStorage(id, event);
-    const base = getOnLocalStorage(localStorageKeyQueue);
-    startLibraryMarkup(base);
+    // const base = getOnLocalStorage(localStorageKeyQueue);
+    // startLibraryMarkup(base);
   }
 }
 
@@ -57,17 +55,14 @@ function addToQueue(idMovie) {
 function removeOnQueue(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyQueue);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  delArr = newArrIdMovie.splice(idexDelId);
+  delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyQueue, newArrIdMovie);
 }
 
 function removeWatched(idMovie) {
-  console.log(idMovie);
   const newArrIdMovie = getOnLocalStorage(localStorageKeyWatched);
-  console.log(newArrIdMovie);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  console.log(idexDelId);
-  delArr = newArrIdMovie.splice(idexDelId);
+  delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyWatched, newArrIdMovie);
 }
 
@@ -88,28 +83,22 @@ function checkLocalStorageQueue(id) {
 }
 
 function addRemovIdQueueLocalStorage(id, event) {
-  console.log(event.target.textContent);
-
   if (event.target.textContent === 'ADD TO QUEUE') {
     addToQueue(id);
-    console.log('Queue addremoovLC');
     return (event.target.textContent = 'REMOVE FROM QUEUE');
   }
   if (event.target.textContent === 'REMOVE FROM QUEUE') {
     removeOnQueue(id);
-    console.log('Queue addremoovLC');
     return (event.target.textContent = 'ADD TO QUEUE');
   }
 }
 
 function addRemovIdWatdhedLocalStorage(id, event) {
   if (event.target.textContent === 'ADD TO WATCHED') {
-    console.log(id);
     addToWatched(id);
     return (event.target.textContent = 'REMOVE FROM WATCHED');
   }
   if (event.target.textContent === 'REMOVE FROM WATCHED') {
-    console.log(id);
     removeWatched(id);
     return (event.target.textContent = 'ADD TO WATCHED');
   }
