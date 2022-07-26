@@ -12,3 +12,4 @@ export default {
   btnGoTop: document.querySelector('.btn-move-up'),
   toggleTheme: document.querySelector('.toggle-theme'),
 };
+// export let testEvent = 'queue';
