@@ -32,7 +32,7 @@ if (
 }
 
 const createMarkup = async id => {
-  // loader.classList.remove('is-hidden');
+  loader.classList.remove('is-hidden');
   clearCard();
   movieApi.id = id;
   try {
@@ -49,7 +49,7 @@ const createMarkup = async id => {
   }
 
   modalplace.classList.remove('is-hidden');
-  // loader.classList.add('is-hidden');
+  loader.classList.add('is-hidden');
 };
 
 const onGalleryContainerClick = e => {
