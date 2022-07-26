@@ -19,8 +19,6 @@ const firebaseConfig = {
   appId: '1:298945320872:web:2c146219caa9b256beef9d',
 };
 
-// let USER_ID = null;
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const loginForm = document.querySelector('[data-signin-form]');
@@ -31,7 +29,7 @@ const libraryLink = document.querySelector(
 );
 
 onAuthStateChanged(auth, user => {
-  userInterface = user;
+  let userInterface = user;
   if (user) {
     const uid = user.uid;
   }
