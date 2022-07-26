@@ -35,4 +35,5 @@ const onGalleryContainerClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-};
+
+

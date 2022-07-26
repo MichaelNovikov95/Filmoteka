@@ -18,6 +18,7 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 
 export const backdrop = document.querySelector('.backdrop');
 export const modal = document.querySelector('.modal__container');
+const modalplace = document.querySelector('.modal');
 const galleryEl = document.querySelector('.gallery');
 const movieApi = new MovieApi();
 const closeModalFilmBtn = document.querySelector('.close__button');
@@ -47,7 +48,10 @@ const createMarkup = async id => {
   } catch (err) {
     console.log(err);
   }
-  // loader.classList.add('is-hidden');
+
+  modalplace.classList.remove('is-hidden');
+  loader.classList.add('is-hidden');
+
 };
 
 const onGalleryContainerClick = e => {
@@ -56,6 +60,7 @@ const onGalleryContainerClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+  backdrop.classList.remove('is-hidden');
   backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');
   createMarkup(e.target.id);
@@ -102,6 +107,7 @@ galleryEl.addEventListener('click', onGalleryContainerClick);
 // ---------------------------------------------------------------------
 
 export function closeModal() {
+  modalplace.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
   document.body.classList.remove('modal-is-open');
   modal.innerHTML = '';
