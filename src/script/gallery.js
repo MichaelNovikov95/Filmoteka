@@ -16,6 +16,7 @@ const renderPopularFilms = async () => {
   paginationTui.off('afterMove', filter);
   paginationTui.off('afterMove', search);
   paginationTui.off('afterMove', microphon);
+  paginationTui.off('afterMove', popular);
   paginationTui.movePageTo(1);
   try {
     const { data } = await movieApi.fetchPopularFilms();
@@ -41,7 +42,7 @@ const onSearchInput = async e => {
   paginationTui.off('afterMove', popular);
   paginationTui.off('afterMove', filter);
   paginationTui.off('afterMove', microphon);
-
+  paginationTui.off('afterMove', search);
   // console.log(e.target);
   movieApi.query = e.target.value.toLowerCase();
   movieApi.page = 1;
