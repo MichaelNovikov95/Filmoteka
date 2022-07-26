@@ -1,29 +1,18 @@
 import { makeMarkup } from './cardMarkup';
-import { alertNoDataGenresQuery, alertNoDataGenresLocalStrg } from './alerts';
 import { MovieApi } from './fetchFilms';
-import {
-  saveOnLocalStorag,
-  getOnLocalStorage,
-  removeOnLocalStorage,
-} from './localStorage';
+import { getOnLocalStorage } from './localStorage';
 import { refs } from './refs';
-import { movieCard } from './movieCard';
 import { closeModal } from './onOpenCard';
 import { backdrop } from './onOpenCard';
-import { modal } from './onOpenCard';
-import { clearCard, onGalleryContainerClick, createMarkup } from './onOpenCard';
-import { movieCard } from './movieCard';
+import { onGalleryContainerClick } from './onOpenCard';
 import {
   localStorageKeyQueue,
   localStorageKeyWatched,
 } from './localStorageKey';
-
-console.log(window.location.href);
-
 refs.btnHeaderEl.addEventListener('click', selectBTN);
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
 
-const libraryMovieApi = new MovieApi();
+const movieApi = new MovieApi();
 const arrIdMovieQueue = getOnLocalStorage(localStorageKeyQueue) || [];
 const arrIdMovieWathed = getOnLocalStorage(localStorageKeyWatched) || [];
 
@@ -49,8 +38,8 @@ async function startLibraryMarkup(localStorageBase) {
 
 async function fetchCardsLibrary(arr) {
   const arrayOfPromises = arr.map(async id => {
-    libraryMovieApi.id = id;
-    const response = await libraryMovieApi.fetchMovieById();
+    movieApi.id = id;
+    const response = await movieApi.fetchMovieById();
     return response;
   });
   const cardMovieLibrary = await Promise.all(arrayOfPromises);
@@ -63,9 +52,7 @@ function selectBTN(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
-  test = event.target.dataset.action;
-  console.log('event', event.target.dataset.action);
-  console.log('const test: ', test);
+  movieApi.testEvent = event.target.dataset.action;
   if (event.target.dataset.action === 'watched') {
     startLibraryMarkup(getOnLocalStorage(localStorageKeyWatched));
     refs.btnGelleryWatchedEl.classList.add('active');

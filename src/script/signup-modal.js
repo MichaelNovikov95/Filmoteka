@@ -30,3 +30,4 @@ function openModal() {
   document.addEventListener('keydown', closeModalOnEsc);
   refs.modal.addEventListener('click', closeSignupModalOnAreaClick);
 }
+import './modalButton';
