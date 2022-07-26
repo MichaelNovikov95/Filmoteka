@@ -31,9 +31,10 @@ const createMarkup = async id => {
       }
     });
   }
-  const onGalleryContainerClick = e => {
-    console.log(e.target.nodeName);
-    e.preventDefault();
-    if (e.target.nodeName !== 'IMG') {
-      return;
-    }
+const onGalleryContainerClick = e => {
+  console.log(e.target.nodeName);
+  e.preventDefault();
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
+}
