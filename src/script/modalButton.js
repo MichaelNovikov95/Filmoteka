@@ -3,7 +3,7 @@ import {
   getOnLocalStorage,
   removeOnLocalStorage,
 } from './localStorage';
-import { refs, test } from './refs';
+import { refs } from './refs';
 import {
   localStorageKeyQueue,
   localStorageKeyWatched,
@@ -12,10 +12,8 @@ import { makeMarkup } from './cardMarkup';
 import { MovieApi } from './fetchFilms';
 // import { startLibraryMarkup } from './watched';
 // console.log(localStorageKeyQueue);
-
-const libraryMovieApi = new MovieApi();
+const movieApi = new MovieApi();
 refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
-console.log(window.location.pathname);
 const crutch = window.location.pathname;
 export function selectBTNmodal(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -29,10 +27,7 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    console.log(
-      crutch !== '/index.html' && event.target.dataset.action === 'watchedModal'
-    );
-    if (crutch !== '/index.html' && test === 'watched') {
+    if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
       console.log(crutch);
       const base = getOnLocalStorage(localStorageKeyWatched);
       startLibraryMarkup(base);
@@ -48,7 +43,7 @@ export function selectBTNmodal(event) {
     console.log(
       crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
     );
-    if (crutch !== '/index.html' && test === 'queue') {
+    if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
       const base = getOnLocalStorage(localStorageKeyQueue);
       startLibraryMarkup(base);
     }
@@ -65,13 +60,13 @@ function addToQueue(idMovie) {
 function removeOnQueue(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyQueue);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  delArr = newArrIdMovie.splice(idexDelId, 1);
+  let delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyQueue, newArrIdMovie);
 }
 function removeWatched(idMovie) {
   const newArrIdMovie = getOnLocalStorage(localStorageKeyWatched);
   const idexDelId = newArrIdMovie.indexOf(idMovie);
-  delArr = newArrIdMovie.splice(idexDelId, 1);
+  let delArr = newArrIdMovie.splice(idexDelId, 1);
   saveOnLocalStorag(localStorageKeyWatched, newArrIdMovie);
 }
 function checkLocalStorageWatched(id) {
@@ -123,8 +118,8 @@ async function startLibraryMarkup(localStorageBase) {
 }
 async function fetchCardsLibrary(arr) {
   const arrayOfPromises = arr.map(async id => {
-    libraryMovieApi.id = id;
-    const response = await libraryMovieApi.fetchMovieById();
+    movieApi.id = id;
+    const response = await movieApi.fetchMovieById();
     return response;
   });
   const cardMovieLibrary = await Promise.all(arrayOfPromises);

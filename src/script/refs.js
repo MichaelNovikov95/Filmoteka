@@ -9,6 +9,5 @@ export const refs = {
 export default {
   container: document.getElementById('pagination'),
   paginationWrap: document.querySelector('.wraper'),
+  btnGoTop: document.querySelector('.btn-move-up'),
 };
-
-export const test = 'queue';
