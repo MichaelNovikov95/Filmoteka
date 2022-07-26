@@ -1,0 +1,192 @@
+.is-unactive {
+  pointer-events: none;
+}
+
+.unvisible {
+  display: none;
+}
+
+.logout-wrapper.is-hidden {
+  display: none;
+  pointer-events: none;
+}
+
+.login-wrapper.is-hidden {
+  display: none;
+  pointer-events: none;
+}
+
+.js-link + .js-link {
+  margin-left: 20px;
+}
+
+.js-link {
+  transition: 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    color: var(--button-activeHover-color);
+  }
+}
+
+.auth-backdrop {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 99, 71, 0.465);
+
+  opacity: 1;
+  transition: opacity 250ms;
+
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.auth-backdrop.visual-hidden {
+  opacity: 0;
+  pointer-events: none;
+  & .signup-modal {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.auth-modal {
+  padding: 40px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  // transition: transform $chang-time $chang-func;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    box-sizing: border-box;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    padding: 40px 32px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 40px 40px;
+    width: 480px;
+  }
+  &__title {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.17;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  &__close-btn {
+    display: block;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+
+    &:hover,
+    &:focus {
+      svg {
+        // stroke: map-get($colors, 'active');
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  &__field {
+    z-index: 1;
+    position: relative;
+    &:last-of-type {
+      margin-top: 20px;
+    }
+  }
+  &__icon {
+    display: block;
+    // stroke: map-get($colors, 'main');
+    // fill: map-get($colors, 'main');
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 34px;
+    left: 8px;
+    // transition: stroke $chang-time $chang-func, fill $chang-time $chang-func;
+  }
+  &__input {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+    padding-left: 32px;
+    // border: 1px solid map-get($colors, 'main');
+    border-radius: 4px;
+    // transition: border-color $chang-time $chang-func;
+    er,
+    &:focus {
+      outline: 0;
+      // border-color: map-get($colors, 'active');
+      // & + .signup-form__icon {
+      //   stroke: map-get($colors, 'active');
+      //   fill: map-get($colors, 'active');
+      // }
+    }
+  }
+  &__name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.67;
+    margin-bottom: 4px;
+  }
+  &__btn {
+    z-index: 1;
+    margin-top: 32px;
+    padding: 14px 32px 12px 32px;
+    // border: 1px solid map-get($colors, 'main');
+    border-radius: 5px;
+    // background-color: map-get($colors, 'light');
+    // color: map-get($colors, 'main');
+    // transition: background-color $chang-time $chang-func,
+    //   color $chang-time $chang-func, border-color $chang-time $chang-func;
+    margin-left: auto;
+    margin-right: auto;
+    &:hover,
+    &:focus {
+      // background-color: map-get($colors, 'active');
+      // color: map-get($colors, 'light');
+      border-color: transparent;
+      cursor: pointer;
+    }
+  }
+}
