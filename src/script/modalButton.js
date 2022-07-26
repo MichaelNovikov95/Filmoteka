@@ -15,6 +15,7 @@ import { MovieApi } from './fetchFilms';
 const movieApi = new MovieApi();
 refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
 const crutch = window.location.pathname;
+console.log(crutch);
 export function selectBTNmodal(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
@@ -27,11 +28,11 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
-      console.log(crutch);
-      const base = getOnLocalStorage(localStorageKeyWatched);
-      startLibraryMarkup(base);
-    }
+    // if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
+    //   console.log(crutch);
+    //   const base = getOnLocalStorage(localStorageKeyWatched);
+    //   startLibraryMarkup(base);
+    // }
   } else {
     event.target.dataset.action === 'queueModal';
     const id = Number(event.target.dataset.id);
@@ -43,10 +44,10 @@ export function selectBTNmodal(event) {
     console.log(
       crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
     );
-    if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
-      const base = getOnLocalStorage(localStorageKeyQueue);
-      startLibraryMarkup(base);
-    }
+    // if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
+    //   const base = getOnLocalStorage(localStorageKeyQueue);
+    //   startLibraryMarkup(base);
+    // }
   }
 }
 function addToWatched(idMovie) {

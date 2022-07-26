@@ -24,7 +24,7 @@ function onClickLogoutHandler(e) {
   e.preventDefault();
   signOut(auth)
     .then(() => {
-      location.replace('http://localhost:8888/index.html');
+      location.replace('https://michaelnovikov95.github.io/Filmoteka/');
       Notiflix.Notify.warning('You are now successfully logged out!');
     })
     .catch(error => {

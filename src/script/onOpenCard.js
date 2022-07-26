@@ -31,6 +31,7 @@ if (
   saveOnLocalStorag(localStorageKeyWatched, []);
 }
 
+
 const createMarkup = async id => {
   loader.classList.remove('is-hidden');
   clearCard();
@@ -57,7 +58,7 @@ const onGalleryContainerClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  backdrop.classList.remove('is-hidden');
+  
   backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');
   createMarkup(e.target.id);
