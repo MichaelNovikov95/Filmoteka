@@ -23,3 +23,8 @@
     padding-right: 32px;
   }
 }
+%coverRenterNoRepeat {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
