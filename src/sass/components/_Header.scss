@@ -2,7 +2,7 @@
   @extend %container;
   @include font(null, 500, 1.14, null);
   padding-top: 40px;
-  padding-bottom: 92px;
+  padding-bottom: 22px;
   background: radial-gradient(
     circle,
     rgba(208, 4, 4, 1) 7%,
@@ -21,7 +21,7 @@
   }
   @include tablet {
     background-image: url(/src/images/header/header-background-tablet1x.png);
-    padding-bottom: 80px;
+    padding-bottom: 40px;
 
     @include retina {
       background-image: url(/src/images/header/header-background-tablet2x.png);
