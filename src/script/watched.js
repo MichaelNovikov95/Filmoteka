@@ -17,7 +17,6 @@ import {
   localStorageKeyQueue,
   localStorageKeyWatched,
 } from './localStorageKey';
-import { test } from './refs';
 
 console.log(window.location.href);
 
