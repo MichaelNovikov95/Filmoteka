@@ -7,8 +7,15 @@ const refs = {
 refs.openModalBtn.addEventListener('click', openModal);
 refs.crossBtn.addEventListener('click', closeSignInModal);
 
-function closeSignupModalOnAreaClick() {
-  closeSignInModal();
+function closeSignupModalOnAreaClick(e) {
+  console.dir(e.target.nodeName);
+  if (
+    e.target.classList.contains('auth-backdrop') ||
+    e.target.nodeName === 'BUTTON' ||
+    e.target.nodeName === 'use'
+  ) {
+    closeSignInModal();
+  }
 }
 
 function closeModalOnEsc(e) {
