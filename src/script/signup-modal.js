@@ -8,7 +8,9 @@ refs.openModalBtn.addEventListener('click', openModal);
 refs.crossBtn.addEventListener('click', closeSignupModal);
 
 function closeSignupModalOnAreaClick(e) {
-  closeSignupModal();
+  if (e.target.classList.contains('auth-backdrop')) {
+    closeSignupModal();
+  }
 }
 
 function closeModalOnEsc(e) {
