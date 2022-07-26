@@ -3,6 +3,7 @@ import { makeMarkup } from './cardMarkup';
 import { paginationTui, paginationStart } from './pagination';
 import { popular, search } from './gallery';
 import { filter } from './filter';
+import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import refs from './refs';
 const galleryEl = document.querySelector('.gallery');
 const SpeechRecognition =
