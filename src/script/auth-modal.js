@@ -78,12 +78,10 @@ function onSubmitSignupHandler(e) {
 }
 
 function onClickLogoutHandler(e) {
-  console.log(window.location.pathname);
+  e.preventDefault();
   signOut(auth)
     .then(() => {
-      window.location.href = Notiflix.Notify.warning(
-        'You are now successfully logged out!'
-      );
+      Notiflix.Notify.warning('You are now successfully logged out!');
     })
     .catch(error => {
       const errorCode = error.code;
