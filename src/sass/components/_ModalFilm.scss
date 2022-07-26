@@ -55,6 +55,7 @@
   }
 }
 .image__place {
+  position: relative;
   display: block;
   background-color: inherit;
   border-radius: 5px;
@@ -167,10 +168,39 @@
   }
   &--active {
     border: none;
-    background-color: #ff6b01;
+    background-color: rgb(255, 107, 1);
     color: #ffffff;
   }
 }
+.button__trailer {
+  font-size: 20px;
+  font-weight: 500;
+  background-color: transparent;
+  border: transparent;
+  position: absolute;
+  width: 100%;
+  padding: 5px 0;
+  margin: 0 auto;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    @media screen and (min-width: 1280px) {
+      left: 40px;
+      top: 15px;
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
 .button__place {
   // position: absolute;
 
@@ -185,8 +215,11 @@
 //     height: 100%;
 // }
 .close__button {
+  padding: 0;
   position: absolute;
   display: flex;
+  justify-content: center;
+  align-items: center;
   top: 16px;
   right: 16px;
   width: 14px;
@@ -195,7 +228,6 @@
   border: none;
 }
 .close__icon {
-  position: absolute;
   top: 0;
   left: 0;
   fill: #000000;

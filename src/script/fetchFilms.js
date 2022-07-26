@@ -80,4 +80,13 @@ export class MovieApi {
       },
     });
   }
+  fetchMovieByIdForTrailer() {
+    return axios.get(`${this.#ID_URL}${this.id}/videos`, {
+      params: {
+        api_key: this.#API_KEY,
+        page: this.page,
+        language: 'en-US',
+      },
+    });
+  }
 }
