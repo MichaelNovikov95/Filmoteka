@@ -81,7 +81,9 @@ function onClickLogoutHandler(e) {
   console.log(window.location.pathname);
   signOut(auth)
     .then(() => {
-      Notiflix.Notify.warning('You are now successfully logged out!');
+      window.location.href = Notiflix.Notify.warning(
+        'You are now successfully logged out!'
+      );
     })
     .catch(error => {
       const errorCode = error.code;
