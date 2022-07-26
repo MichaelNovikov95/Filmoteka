@@ -16,6 +16,7 @@ export class MovieApi {
     this.genre = '';
     this.year = null;
     this.sort = 'popularity.desc';
+    this.testEvent = 'queue';
   }
   // by input
   fetchFilms() {

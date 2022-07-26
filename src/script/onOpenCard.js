@@ -42,7 +42,6 @@ const createMarkup = async id => {
     closeModalFilmBtn.addEventListener('click', closeModal);
     setTimeout(() => {
       const btnOpenTrailer = document.querySelector('.js-trailer');
-      console.log(btnOpenTrailer);
       btnOpenTrailer.addEventListener('click', onOpenTrailerModal);
     }, 0);
   } catch (err) {
@@ -50,12 +49,10 @@ const createMarkup = async id => {
   }
 
   modalplace.classList.remove('is-hidden');
-  loader.classList.add('is-hidden');
-
+  // loader.classList.add('is-hidden');
 };
 
 const onGalleryContainerClick = e => {
-  console.log(e.target.nodeName);
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
     return;
