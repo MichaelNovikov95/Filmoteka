@@ -17,10 +17,10 @@ export function makeMarkup(cards) {
         const date = new Date(release_date);
         const choseTitle = title || original_title || name || original_name;
         const finalTitle = function () {
-          if (choseTitle.length < 33) {
+          if (choseTitle.length <= 31) {
             return choseTitle.toUpperCase();
           } else {
-            return choseTitle.toUpperCase().slice(0, 30) + '...';
+            return choseTitle.toUpperCase().slice(0, 28) + '...';
           }
         };
         // const finalRating = Math.round10(vote_average, -2);
