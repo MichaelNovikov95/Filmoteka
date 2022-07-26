@@ -3,23 +3,21 @@ import {
   getOnLocalStorage,
   removeOnLocalStorage,
 } from './localStorage';
-import { refs } from './refs';
+import { refs, testEvent } from './refs';
 import {
   localStorageKeyQueue,
   localStorageKeyWatched,
 } from './localStorageKey';
 import { makeMarkup } from './cardMarkup';
 import { MovieApi } from './fetchFilms';
-// import { startLibraryMarkup } from './watched';
-// console.log(localStorageKeyQueue);
+import { testEvent1 } from './watched';
 const movieApi = new MovieApi();
 refs.modalBtnParentEl.addEventListener('click', selectBTNmodal);
 const crutch = window.location.pathname;
-export function selectBTNmodal(event) {
+function selectBTNmodal(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
-
   if (event.target.dataset.action === 'watchedModal') {
     const id = Number(event.target.previousElementSibling.dataset.id);
     event.target.classList.add('film-modal__button--active');
@@ -27,8 +25,7 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
-      console.log(crutch);
+    if (crutch !== '/index.html' && testEvent1 === 'watched') {
       const base = getOnLocalStorage(localStorageKeyWatched);
       startLibraryMarkup(base);
     }
@@ -40,10 +37,7 @@ export function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdQueueLocalStorage(id, event);
-    console.log(
-      crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
-    );
-    if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
+    if (crutch !== '/index.html' && testEvent1 === 'queue') {
       const base = getOnLocalStorage(localStorageKeyQueue);
       startLibraryMarkup(base);
     }

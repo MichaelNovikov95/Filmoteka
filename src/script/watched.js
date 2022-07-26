@@ -1,7 +1,7 @@
+import { refs } from './refs';
 import { makeMarkup } from './cardMarkup';
 import { MovieApi } from './fetchFilms';
 import { getOnLocalStorage } from './localStorage';
-import { refs } from './refs';
 import { closeModal } from './onOpenCard';
 import { backdrop } from './onOpenCard';
 import { onGalleryContainerClick } from './onOpenCard';
@@ -9,13 +9,11 @@ import {
   localStorageKeyQueue,
   localStorageKeyWatched,
 } from './localStorageKey';
-refs.btnHeaderEl.addEventListener('click', selectBTN);
-refs.galleryEl.addEventListener('click', onGalleryContainerClick);
-
 const movieApi = new MovieApi();
 const arrIdMovieQueue = getOnLocalStorage(localStorageKeyQueue) || [];
 const arrIdMovieWathed = getOnLocalStorage(localStorageKeyWatched) || [];
-
+const btnHeaderEl = document.querySelector('.js-btn__header');
+const galleryEl = document.querySelector('.gallery');
 if (arrIdMovieQueue.length !== 0) {
   startLibraryMarkup(arrIdMovieQueue);
 } else console.log('no queue');
@@ -33,9 +31,6 @@ async function startLibraryMarkup(localStorageBase) {
     console.log(error.message);
   }
 }
-
-// export { startLibraryMarkup };
-
 async function fetchCardsLibrary(arr) {
   const arrayOfPromises = arr.map(async id => {
     movieApi.id = id;
@@ -46,13 +41,13 @@ async function fetchCardsLibrary(arr) {
   return cardMovieLibrary;
 }
 
-refs.btnHeaderEl.addEventListener('click', selectBTN);
+export let testEvent1 = 'queue';
 
 function selectBTN(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
-  movieApi.testEvent = event.target.dataset.action;
+  testEvent1 = event.target.dataset.action;
   if (event.target.dataset.action === 'watched') {
     startLibraryMarkup(getOnLocalStorage(localStorageKeyWatched));
     refs.btnGelleryWatchedEl.classList.add('active');
@@ -65,10 +60,6 @@ function selectBTN(event) {
   }
 }
 
-backdrop.addEventListener('click', onClickBackdrop);
-
-document.addEventListener('keydown', onClickEsc);
-
 function onClickBackdrop(event) {
   if (event.currentTarget === event.target) {
     closeModal();
@@ -79,3 +70,7 @@ function onClickEsc(event) {
     closeModal();
   }
 }
+backdrop.addEventListener('click', onClickBackdrop);
+document.addEventListener('keydown', onClickEsc);
+btnHeaderEl.addEventListener('click', selectBTN);
+galleryEl.addEventListener('click', onGalleryContainerClick);

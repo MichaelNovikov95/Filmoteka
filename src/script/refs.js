@@ -11,3 +11,4 @@ export default {
   paginationWrap: document.querySelector('.wraper'),
   btnGoTop: document.querySelector('.btn-move-up'),
 };
+// export let testEvent = 'queue';
