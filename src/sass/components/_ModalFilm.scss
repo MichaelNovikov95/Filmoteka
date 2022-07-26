@@ -144,7 +144,8 @@
 .film-modal__button {
   width: 110px;
   height: 44px;
-  padding:  27px 27px;
+  padding-right: 9px;
+  padding-left:  9px; 
   align-items: center;
   justify-content: center;
   border: 1px solid #000000;
@@ -159,14 +160,14 @@
   }
   @media screen and (min-width: 768px) {
     width: 125px;
-    padding:  9px  9px;
+    
     &:not(:last-child) {
       margin-right: 15px;
     }
   }
   @media screen and (min-width: 1280px) {
     width: 136px;
-    padding:  10px  10px;
+   
   }
   &--active {
     border: none;
