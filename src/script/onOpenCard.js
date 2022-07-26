@@ -31,7 +31,7 @@ if (
   saveOnLocalStorag(localStorageKeyWatched, []);
 }
 
-const createMarkup = async id => {
+const createMarkup = async id =>  {
   // loader.classList.remove('is-hidden');
   clearCard();
   movieApi.id = id;
@@ -50,6 +50,7 @@ const createMarkup = async id => {
 
   modalplace.classList.remove('is-hidden');
   // loader.classList.add('is-hidden');
+
 };
 
 const onGalleryContainerClick = e => {
@@ -57,7 +58,7 @@ const onGalleryContainerClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  backdrop.classList.remove('is-hidden');
+  
   backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');
   createMarkup(e.target.id);

@@ -151,6 +151,10 @@
   border-radius: 5px;
   background-color: #ffffff;
   font-weight: 500;
+  &:hover {
+      transform: scale(1.05);
+      transition: transform 500ms;
+  }
   @media screen and (min-width: 320px) {
     width: 110px;
     &:not(:last-child) {
@@ -172,7 +176,9 @@
     border: none;
     background-color: rgb(255, 107, 1);
     color: #ffffff;
+    
   }
+   
 }
 .button__trailer {
   font-size: 20px;
@@ -183,6 +189,10 @@
   width: 100%;
   padding: 5px 0;
   margin: 0 auto;
+  &:hover {
+      transform: scale(1.08);
+      transition: transform 500ms;
+  }
   &:after {
     content: '';
     position: absolute;
@@ -194,6 +204,7 @@
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg');
     background-repeat: no-repeat;
     background-size: contain;
+   
     @media screen and (min-width: 1280px) {
       left: 40px;
       top: 15px;
