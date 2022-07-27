@@ -26,8 +26,9 @@ function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
+    // if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
+    //   console.log(crutch);
 
-    // if (crutch !== '/index.html' && testEvent1 === 'watched') {
     //   const base = getOnLocalStorage(localStorageKeyWatched);
     //   startLibraryMarkup(base);
     // }
@@ -39,8 +40,11 @@ function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdQueueLocalStorage(id, event);
+    console.log(
+      crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
+    );
+    // if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
 
-    // if (crutch !== '/index.html' && testEvent1 === 'queue') {
     //   const base = getOnLocalStorage(localStorageKeyQueue);
     //   startLibraryMarkup(base);
     // }
