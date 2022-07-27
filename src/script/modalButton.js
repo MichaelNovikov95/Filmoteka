@@ -26,12 +26,13 @@ function selectBTNmodal(event) {
       'film-modal__button--active'
     );
     addRemovIdWatdhedLocalStorage(id, event);
-    // if (crutch !== '/index.html' && movieApi.testEvent === 'watched') {
-    //   console.log(crutch);
 
-    //   const base = getOnLocalStorage(localStorageKeyWatched);
-    //   startLibraryMarkup(base);
-    // }
+    if (crutch !== '/index.html') {
+      console.log(crutch);
+      const base = getOnLocalStorage(localStorageKeyWatched);
+      startLibraryMarkup(base);
+    }
+
   } else {
     event.target.dataset.action === 'queueModal';
     const id = Number(event.target.dataset.id);
@@ -43,11 +44,12 @@ function selectBTNmodal(event) {
     console.log(
       crutch !== '/index.html' && event.target.dataset.action === 'queueModal'
     );
-    // if (crutch !== '/index.html' && movieApi.testEvent === 'queue') {
 
-    //   const base = getOnLocalStorage(localStorageKeyQueue);
-    //   startLibraryMarkup(base);
-    // }
+    if (crutch !== '/index.html') {
+      const base = getOnLocalStorage(localStorageKeyQueue);
+      startLibraryMarkup(base);
+    }
+
   }
 }
 function addToWatched(idMovie) {
